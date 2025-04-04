@@ -1,0 +1,17 @@
+{# templates/lucky_number.html.twig #}
+
+{# <h1>Your lucky number is {{ number }}</h1> #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky number{% endblock %}
+
+{% block body %}
+    <h1>Slumpat nummer</h1>
+    <p>Ditt slumpade nummer är: {{ number }}</p>
+    <h1>Rolig fakta</h1>
+    <p>{{ fakta[number] }}</p>
+    <a href="{{ asset('img/chelsea-home.jpeg') }}">
+        <img src="{{ asset('img/chelsea-home.jpeg') }}" alt="">
+    </a>
+{% endblock %}

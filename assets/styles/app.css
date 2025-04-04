@@ -1,0 +1,61 @@
+body {
+    background-color: #034694;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 10px;
+}
+
+h1 {
+    border-bottom: 4px double #ccc;
+}
+
+
+header {
+    height: 200px;
+    background: url('../images/chelsea_stadium.jpg');
+}
+
+nav {
+    background-color: #034694;
+    height: 150px;
+    border: #DBA111 solid 2px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 50px;
+}
+
+li {
+    text-shadow: 1px 1px #D1D3D4;
+
+}
+
+a {
+    color: #DBA111;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #EE242C;
+}
+
+img {
+    max-width: 300px;
+}
+
+p {
+    color: #DBA111;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    border: #DBA111 2px solid;
+    border-radius: 20px;
+    padding: 10px;
+    height: 75px;
+}

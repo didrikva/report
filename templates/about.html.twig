@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <h1>About</h1>
+    {% block article %}
+    <p>Kursen handlar om objekthanterade webbapplikationer inom php. Utveckling av weppapplikationer i ramverk med hjälp av webbservrar. Utveckla och driftsätta en webbapplikation där databaser har en central roll.<br>Länk till github via bilden nedan:</p>
+    <a href="https://github.com/dbwebb-se/mvc"><img src="{{ asset('img/php.jpg') }}" alt="PHP"></a>
+    <p>Länk till mitt github nedan:</p>
+    <a href="https://github.com/didrikva/report"><img src="{{ asset('img/chelsea_stadium.jpg') }}" alt="Chelsea"></a>
+   
+    {% endblock %}
+{% endblock %}
