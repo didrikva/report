@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller\Dice;
+namespace App\Controller\Card;
 
-class DiceGraphic extends Dice
+class CardGraphic extends Card
 {
     private $representation = [
         '♠',

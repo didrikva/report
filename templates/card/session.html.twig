@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block main %}
+<h1>Card Game</h1>
+<h3>Session dump:</h3>
+<p>Antal tärningar i handen: {{ dicehand }}</p>
+
+{{ include('flash.html.twig') }}
+
+
+{% endblock %}

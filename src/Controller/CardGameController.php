@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+use App\Controller\Card\CardGraphic;
+use App\Controller\Card\Card;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +20,7 @@ class CardGameController extends AbstractController
         $session->set("pig_dicehand", 5);
         $dicehand = $session->get("pig_dicehand");
 
-        return $this->render('card/home.html.twig', [
+        return $this->render('card/session.html.twig', [
             'dicehand' => $dicehand
         ]);
     }
@@ -34,8 +36,24 @@ class CardGameController extends AbstractController
             'warning',
             'Nu är sessionen raderad!'
         );
-        return $this->render('card/home.html.twig', [
+        return $this->render('card/session.html.twig', [
             'dicehand' => $dicehand
         ]);
+    }
+    #[Route("/card", name: "card_start")]
+    public function home(): Response
+    {
+        return $this->render('card/home.html.twig');
+    }
+    #[Route("/card/deck/draw", name: "card_draw")]
+    public function draw(): Response
+    {
+        $card = new Card();
+        $card->draw();
+        $data = [
+            "draw_card" => $card->getAsString(),
+            "amount_left" => $card->getAsString(),
+        ];
+        return $this->render('card/play/draw.html.twig', $data);
     }
 }
