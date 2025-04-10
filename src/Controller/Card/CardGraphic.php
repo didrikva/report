@@ -14,10 +14,11 @@ class CardGraphic extends Card
     public function __construct()
     {
         parent::__construct();
+        $this->value = random_int(0, 3);
     }
 
     public function getAsString(): string
     {
-        return $this->representation[$this->value - 1];
+        return $this->representation[$this->value];
     }
 }

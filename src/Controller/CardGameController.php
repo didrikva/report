@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Controller\Card\CardGraphic;
 use App\Controller\Card\Card;
+use App\Controller\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,10 +51,21 @@ class CardGameController extends AbstractController
     {
         $card = new Card();
         $card->draw();
+        $value = new CardGraphic();
         $data = [
             "draw_card" => $card->getAsString(),
+            "draw_value" => $value->getAsString(),
             "amount_left" => $card->getAsString(),
         ];
         return $this->render('card/play/draw.html.twig', $data);
+    }
+    #[Route("/card/deck", name: "card_deck")]
+    public function deck(): Response
+    {
+        $deck = new DeckOfCards();
+        $data = [
+            "deck" => $deck->getAsString(),
+        ];
+        return $this->render('card/play/deck.html.twig', $data);
     }
 }
