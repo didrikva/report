@@ -39,11 +39,14 @@ class DeckOfCards
         shuffle($this->cards);
         return $this->cards;
     }
-    public function draw($num): array
+    public function draw($num): void
     {
-        $draw_cards = array_slice($this->cards, 0, $num);
+        $this->draw_cards = array_slice($this->cards, 0, $num);
         $this->cards = array_slice($this->cards, $num, count($this->cards));
-        return [$this->cards, $draw_cards];
+    }
+    public function getDrawn(): array
+    {
+        return $this->draw_cards;
     }
     public function getValue(): array
     {

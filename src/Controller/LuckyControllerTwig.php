@@ -7,6 +7,7 @@ use App\Controller\Card\Card;
 use App\Controller\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -191,9 +192,6 @@ class LuckyControllerTwig extends AbstractController
     {
         $deck = new DeckOfCards();
         $deck->shuffle();
-        $data = [
-            "deck" => $deck->getString(),
-        ];
         $session->set("card_hand", $deck);
         $session->set("card_left", 52);
         $response = new JsonResponse([
@@ -203,20 +201,70 @@ class LuckyControllerTwig extends AbstractController
         );
         return $response;
     }
-    #[Route("/card/deck/draw/{num<\d+>}", name: "card_draw_number")]
-    public function apiDrawNumber(
+    #[Route("/api/deck/draw/{num<\d+>}", name: "card_init_get", methods: ['GET'])]
+    public function init(): JsonResponse
+    {
+        $deckOfCards = $session->get("card_hand");
+        $response = new JsonResponse([
+            'remaining' => $session->get("card_left"),
+            'drawn' => $deckOfCards->getDrawn()]);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+    #[Route("/api/deck/draw/{num<\d+>}", name: "card_init_post", methods: ['POST'])]
+    public function initCallback(
+        Request $request,
         SessionInterface $session
+    ): Response
+    {
+        $num = $request->request->get('num_cards');
+
+        $hand = new DiceHand();
+        for ($i = 1; $i <= $numDice; $i++) {
+            $hand->add(new DiceGraphic());
+        }
+        $hand->roll();
+
+        $session->set("pig_dicehand", $hand);
+        $session->set("pig_dices", $numDice);
+        $session->set("pig_round", 0);
+        $session->set("pig_total", 0);
+
+        return $this->redirectToRoute('pig_play');
+    }
+    #[Route("/api/deck/draw", name: "api_draw", methods: ['POST'])]
+    public function apiDrawPost(
+        SessionInterface $session,
+        int $num
     ): JsonResponse
     {
-        $deck = new DeckOfCards();
-        $deck->shuffle();
-        $data = [
-            "deck" => $deck->getString(),
-        ];
-        $session->set("card_hand", $deck);
-        $session->set("card_left", 52);
+        $deckOfCards = $session->get("card_hand");
+        $session->set("card_left", $cardLeft - $num);
+        $deckOfCards->draw($num);
+        $session->set("card_hand", $deckOfCards);
+        return $this->redirectToRoute('api_draw_get');
+    }
+    #[Route("/api/deck/draw/{num<\d+>}", name: "api_draw_get", methods: ['GET'])]
+    public function apiDrawNumber(
+        SessionInterface $session,
+        int $num
+    ): JsonResponse
+    {
+        $cardLeft = $session->get("card_left");
+        if ($num > 52) {
+            throw new \Exception("Can not draw more than 52 cards!");
+        } elseif ($num > $cardLeft) {
+            throw new \Exception("Not that many cards left in deck, shuffle!");
+        };
+        $deckOfCards = $session->get("card_hand");
+        $session->set("card_left", $cardLeft - $num);
+        $deckOfCards->draw($num);
+        $session->set("card_hand", $deckOfCards);
         $response = new JsonResponse([
-            'deck' => $deck->getString()]);
+            'remaining' => $session->get("card_left"),
+            'drawn' => $deckOfCards->getDrawn()]);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );

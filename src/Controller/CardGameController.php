@@ -100,14 +100,12 @@ class CardGameController extends AbstractController
         };
         $deckOfCards = $session->get("card_hand");
         $session->set("card_left", $cardLeft - $num);
-        $deck = new DeckOfCards();
-        $deck->shuffle();
-        [$remaining, $drawn_cards] = $deck->draw($num);
+        $deckOfCards->draw($num);
         $data = [
             "deck" => $session->get("card_left"),
-            "drawn_cards" => $drawn_cards,
+            "drawn_cards" => $deckOfCards->getDrawn(),
         ];
-        $session->set("card_hand", $remaining);
+        $session->set("card_hand", $deckOfCards);
         return $this->render('card/play/draw_num.html.twig', $data);
     }
 }
