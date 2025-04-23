@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller\DeckOfCards;
+namespace App\Controller\Card;
 
-use App\Card\Card;
-use App\Card\CardGraphic;
+use App\Controller\Card\Card;
+use App\Controller\Card\CardGraphic;
 
 class DeckOfCards
 {
@@ -14,9 +14,10 @@ class DeckOfCards
     {
         for ($i = 0; $i < 4; $i++) {
             for ($j = 0; $j < 13; $j++) {
-                $card = new Card($j + 1);
-                $value = new CardGraphic($i + 1);
-                $this->cards[] = $card->getAsString() . $value->getAsString();
+                $card = new Card();
+                $card->getValue($j);
+                $value = new CardGraphic();
+                $this->cards[] = $card->getAsString() . $value->getString($i);
             }
         }
     }
@@ -24,5 +25,28 @@ class DeckOfCards
     public function getAsString(): string
     {
         return "[{$this->cards}]";
+    }
+    public function getString(): array
+    {
+        $values = [];
+        foreach ($this->cards as $card) {
+            $values[] = $card;
+        }
+        return $values;
+    }
+    public function shuffle(): array
+    {
+        shuffle($this->cards);
+        return $this->cards;
+    }
+    public function draw($num): array
+    {
+        $draw_cards = array_slice($this->cards, 0, $num);
+        $this->cards = array_slice($this->cards, $num, count($this->cards));
+        return [$this->cards, $draw_cards];
+    }
+    public function getValue(): array
+    {
+        return $this->cards;
     }
 }

@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Controller\Card\CardGraphic;
+use App\Controller\Card\Card;
+use App\Controller\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class LuckyControllerTwig extends AbstractController
@@ -164,6 +168,55 @@ class LuckyControllerTwig extends AbstractController
             'quote' => $quote,
             'date' => $date,
             'timestamp' => $timestamp]);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+    #[Route("/api/deck", name: "deck")]
+    public function apideck(): JsonResponse
+    {
+        $deck = new DeckOfCards();
+        $response = new JsonResponse([
+            'deck' => $deck->getString()]);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+    #[Route("/api/deck/shuffle", name: "shuffle")]
+    public function apishuffle(
+        SessionInterface $session
+    ): JsonResponse
+    {
+        $deck = new DeckOfCards();
+        $deck->shuffle();
+        $data = [
+            "deck" => $deck->getString(),
+        ];
+        $session->set("card_hand", $deck);
+        $session->set("card_left", 52);
+        $response = new JsonResponse([
+            'deck' => $deck->getString()]);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+    #[Route("/card/deck/draw/{num<\d+>}", name: "card_draw_number")]
+    public function apiDrawNumber(
+        SessionInterface $session
+    ): JsonResponse
+    {
+        $deck = new DeckOfCards();
+        $deck->shuffle();
+        $data = [
+            "deck" => $deck->getString(),
+        ];
+        $session->set("card_hand", $deck);
+        $session->set("card_left", 52);
+        $response = new JsonResponse([
+            'deck' => $deck->getString()]);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );

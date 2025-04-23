@@ -3,8 +3,18 @@
 {% block title %}Card Game{% endblock %}
 
 {% block main %}
+
+<a href="card/deck">Link to deck</a>
+<br>
+<a href="card/deck/shuffle">Link to shuffle</a>
+<br>
+<a href="card/deck/draw">Link to draw</a>
+<br>
+<a href="card/deck/draw/5">Link to draw 5</a>
+
 <h1>Card game</h1>
 <h2>Struktur</h2>
 <p>Jag utgick lite ifrån föreläsningen med Mikael för detta kursmoment för att bestämma strukturen för mina klasser. </p>
-
+<p>CardGraphic ärver av card classen</p>
+<p>DeckOfCards classen ärver inte av någon class men använder sig utav både card och cardgraphic för att få fram korten och kortleken.</p>
 {% endblock %}

@@ -23,8 +23,9 @@ class Card
         return $this->value;
     }
 
-    public function getValue(): string
+    public function getValue($num): string
     {
+        $this->value = $this->cards[$num];
         return $this->value;
     }
 

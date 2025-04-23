@@ -47,15 +47,20 @@ class CardGameController extends AbstractController
         return $this->render('card/home.html.twig');
     }
     #[Route("/card/deck/draw", name: "card_draw")]
-    public function draw(): Response
+    public function draw(
+        SessionInterface $session
+    ): Response
     {
+        $deckOfCards = $session->get("card_hand");
+        $cardLeft = $session->get("card_left");
+        $session->set("card_left", $cardLeft - 1);
         $card = new Card();
         $card->draw();
         $value = new CardGraphic();
         $data = [
             "draw_card" => $card->getAsString(),
             "draw_value" => $value->getAsString(),
-            "amount_left" => $card->getAsString(),
+            "amount_left" => $session->get("card_left"),
         ];
         return $this->render('card/play/draw.html.twig', $data);
     }
@@ -64,8 +69,45 @@ class CardGameController extends AbstractController
     {
         $deck = new DeckOfCards();
         $data = [
-            "deck" => $deck->getAsString(),
+            "deck" => $deck->getString(),
         ];
         return $this->render('card/play/deck.html.twig', $data);
+    }
+    #[Route("/card/deck/shuffle", name: "card_shuffle")]
+    public function shuffle(
+        SessionInterface $session
+    ): Response
+    {
+        $deck = new DeckOfCards();
+        $deck->shuffle();
+        $data = [
+            "deck" => $deck->getString(),
+        ];
+        $session->set("card_hand", $deck);
+        $session->set("card_left", 52);
+        return $this->render('card/play/shuffle.html.twig', $data);
+    }
+    #[Route("/card/deck/draw/{num<\d+>}", name: "card_draw_number")]
+    public function testRollDices(int $num,
+    SessionInterface $session
+    ): Response
+    {
+        $cardLeft = $session->get("card_left");
+        if ($num > 52) {
+            throw new \Exception("Can not draw more than 52 cards!");
+        } elseif ($num > $cardLeft) {
+            throw new \Exception("Not that many cards left in deck, shuffle!");
+        };
+        $deckOfCards = $session->get("card_hand");
+        $session->set("card_left", $cardLeft - $num);
+        $deck = new DeckOfCards();
+        $deck->shuffle();
+        [$remaining, $drawn_cards] = $deck->draw($num);
+        $data = [
+            "deck" => $session->get("card_left"),
+            "drawn_cards" => $drawn_cards,
+        ];
+        $session->set("card_hand", $remaining);
+        return $this->render('card/play/draw_num.html.twig', $data);
     }
 }
