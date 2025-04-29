@@ -185,15 +185,31 @@ class LuckyControllerTwig extends AbstractController
         );
         return $response;
     }
-    #[Route("/api/deck/shuffle", name: "shuffle")]
+    #[Route("/api/deck/shuffle", name: "init_post", methods: ['POST'])]
     public function apishuffle(
         SessionInterface $session
     ): JsonResponse
     {
+        $num = $request->request->get('num_cards');
         $deck = new DeckOfCards();
         $deck->shuffle();
         $session->set("card_hand", $deck);
         $session->set("card_left", 52);
+        return $this->redirectToRoute('shuffle_get');
+    }
+    #[Route("/api/deck/shuffle", name: "init_get", methods: ['GET'])]
+    public function initget(
+        SessionInterface $session
+    ): Response
+    {
+        return $this->redirectToRoute('init_post');
+    }
+    #[Route("/api/deck/shuffle", name: "shuffle_get", methods: ['GET'])]
+    public function apishuffleget(
+        SessionInterface $session
+    ): JsonResponse
+    {
+        $deck = $session->get("card_hand");
         $response = new JsonResponse([
             'deck' => $deck->getString()]);
         $response->setEncodingOptions(
