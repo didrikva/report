@@ -86,7 +86,13 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "csfix": "./tools/php-cs-fixer/php-cs-fixer fix"
+        "csfix": "tools/php-cs-fixer/php-cs-fixer fix",
+        "phpmd": "tools/phpmd/vendor/bin/phpmd . text tools/phpmd/phpmd.xml || true",
+        "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon || true",
+        "lint": [
+            "@phpmd",
+            "@phpstan"
+        ]
     },
     "conflict": {
         "symfony/symfony": "*"
