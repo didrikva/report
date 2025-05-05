@@ -8,7 +8,7 @@ class DiceGraphic extends Dice
         '♠',
         '♥',
         '♦',
-        '♣'
+        '♣',
     ];
 
     public function __construct()

@@ -4,17 +4,25 @@
 
 {% block main %}
 
-<a href="card/deck">Link to deck</a>
+<a href="{{ path('card_deck') }}">Link to deck</a>
 <br>
-<a href="card/deck/shuffle">Link to shuffle</a>
+<a href="{{ path('card_shuffle') }}">Link to shuffle</a>
 <br>
-<a href="card/deck/draw">Link to draw</a>
+<a href="{{ path('card_draw') }}">Link to draw</a>
 <br>
-<a href="card/deck/draw/5">Link to draw 5</a>
+<a href="{{ path('card_draw_number', {num: 5}) }}">Link to draw 5</a>
+<br>
+<a href="{{ path('api') }}">Link to API</a>
 
 <h1>Card game</h1>
 <h2>Struktur</h2>
 <p>Jag utgick lite ifrån föreläsningen med Mikael för detta kursmoment för att bestämma strukturen för mina klasser. </p>
+<p>Card är "grundklassen" för att skapa nya kort.</p>
 <p>CardGraphic ärver av card classen</p>
-<p>DeckOfCards classen ärver inte av någon class men använder sig utav både card och cardgraphic för att få fram korten och kortleken.</p>
+<p>DeckOfCards classen ärver inte av någon class men använder sig utav både card och cardgraphic för att få fram korten och kortleken.  Vilket betyder att det är en beroenderelation.</p>
+
+<h1>UML diagram</h1>
+    <a href="{{ asset('img/umlpng.png') }}">
+        <img src="{{ asset('img/umlpng.png') }}" alt="UML">
+    </a>
 {% endblock %}
