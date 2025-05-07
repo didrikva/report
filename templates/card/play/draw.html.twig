@@ -3,13 +3,24 @@
 {% block title %}Card Game{% endblock %}
 
 {% block main %}
-<a href="../deck">Link to draw</a>
+<a href="../deck">Link to deck</a>
 
 
 <h1>Card game</h1>
 
 
-<p>Kort: {{ draw_card }} {{ draw_value }}</p>
+<div class="deck">
+    {% for i in range(0, 3) %}
+        <ul>
+            {% for card in drawn_card|slice(i * 13, 13) %}
+               {% set symbol = card|slice(-1) %}
+                <li class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
+                    {{ card }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
 <p>Kort kvar: {{ amount_left }}</p>
 
 {% endblock %}

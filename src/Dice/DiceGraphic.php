@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Dice;
+namespace App\Dice;
 
 class DiceGraphic extends Dice
 {

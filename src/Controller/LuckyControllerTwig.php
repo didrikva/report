@@ -183,13 +183,43 @@ class LuckyControllerTwig extends AbstractController
     public function apideck(
         SessionInterface $session,
     ): JsonResponse {
-        $deck = $session->get('card_hand');
-        $response = new JsonResponse([
-            'deck' => $deck->getString()]);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
+        $deckOfCards = $session->get('card_hand');
+        $copy = clone $deckOfCards;
+        $copy->sort();
+        $hearts = [];
+        $diamonds = [];
+        $clubs = [];
+        $spades = [];
 
+        foreach ($copy->getValue() as $card) {
+            
+            $symbol = mb_substr($card, -1, 1, 'UTF-8'); //https://www.php.net/manual/en/function.mb-substr.php
+
+            switch ($symbol) {
+                case '♥':
+                    $hearts[] = $card;
+                    break;
+                case '♦':
+                    $diamonds[] = $card;
+                    break;
+                case '♣':
+                    $clubs[] = $card;
+                    break;
+                case '♠':
+                    $spades[] = $card;
+                    break;
+            }
+        }
+        $deck = array_merge($hearts, $diamonds, $clubs, $spades);
+        $response = new JsonResponse([
+            'remaining' => $session->get('card_left'),
+            'cards' => $deck
+        
+        ]);
+
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
         return $response;
     }
 
@@ -244,7 +274,7 @@ class LuckyControllerTwig extends AbstractController
     public function initCallback(
         Request $request,
         SessionInterface $session,
-        ?int $num = null,
+        int $num = null,
     ): Response {
         if (null === $num) {
             $num = (int) $request->request->get('num_cards');

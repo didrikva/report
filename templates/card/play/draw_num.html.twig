@@ -12,7 +12,10 @@
     {% for i in range(0, 3) %}
         <ul>
             {% for card in drawn_cards|slice(i * 13, 13) %}
-                <li>{{ card }}</li>
+               {% set symbol = card|slice(-1) %}
+                <li class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
+                    {{ card }}
+                </li>
             {% endfor %}
         </ul>
     {% endfor %}

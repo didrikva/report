@@ -8,14 +8,45 @@
 <h1>Card game</h1>
 
 
+{% set hearts = [] %}
+{% set diamonds = [] %}
+{% set clubs = [] %}
+{% set spades = [] %}
+
+{% for card in deck %}
+    {% set symbol = card|slice(-1) %}
+    {% if symbol == '♥' %}
+        {% set hearts = hearts|merge([card]) %}
+    {% elseif symbol == '♦' %}
+        {% set diamonds = diamonds|merge([card]) %}
+    {% elseif symbol == '♣' %}
+        {% set clubs = clubs|merge([card]) %}
+    {% elseif symbol == '♠' %}
+        {% set spades = spades|merge([card]) %}
+    {% endif %}
+{% endfor %}
+
 <div class="deck">
-    {% for i in range(0, 3) %}
-        <ul>
-            {% for card in deck|slice(i * 13, 13) %}
-                <li>{{ card }}</li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
+    <ul>
+        {% for card in hearts %}
+            <li class="card red">{{ card }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for card in diamonds %}
+            <li class="card red">{{ card }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for card in clubs %}
+            <li class="card black">{{ card }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for card in spades %}
+            <li class="card black">{{ card }}</li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

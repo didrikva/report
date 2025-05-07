@@ -5,7 +5,24 @@
 {% block main %}
 <h1>Card Game</h1>
 <h3>Session dump:</h3>
-<p>Antal tärningar i handen: {{ dicehand }}</p>
+<p>Antal kort i kortleken: {{ number }}</p>
+<br>
+<div class="deck">
+    {% for i in range(0, 3) %}
+        <ul>
+            {% for card in deck|slice(i * 13, 13) %}
+                {% set symbol = card|slice(-1) %}
+                <li class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
+                    {{ card }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+
+<br>
+<br>
+<a href="{{ path('card_delete') }}">Delete session</a>
 
 {{ include('flash.html.twig') }}
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Card;
+namespace App\Card;
 
 class DeckOfCards
 {
@@ -55,5 +55,40 @@ class DeckOfCards
     public function getValue(): array
     {
         return $this->cards;
+    }
+    public function sort(): array
+    {
+        
+        $number = [];
+        $rest = [];
+        foreach ($this->cards as $card) {
+            $cardValue = substr($card, 1, strpos($card, ']') - 1);
+    
+            if (is_numeric($cardValue) && $cardValue != 10) {
+                $number[] = $card;
+            } else {
+                $rest[] = $card;
+            }
+            
+        }
+        $order = ['10', 'J', 'Q', 'K', 'A'];
+        $sorted = [];
+
+        foreach ($order as $i) {
+            foreach ($rest as $card) {
+                $value = substr($card, 1, strpos($card, ']') - 1);
+                if ($value === $i) {
+                    $sorted[] = $card;
+                }
+            }
+        }
+        sort($number);
+        
+        // var_dump($rest);
+        // var_dump($number);
+        $this->cards = array_merge($number, $sorted);
+        // var_dump($this->cards);
+        return $this->cards;
+        
     }
 }

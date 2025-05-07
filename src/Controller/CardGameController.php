@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Controller\Card\Card;
-use App\Controller\Card\CardGraphic;
-use App\Controller\Card\DeckOfCards;
+use App\Card\Card;
+use App\Card\CardGraphic;
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,11 +18,20 @@ class CardGameController extends AbstractController
         Request $request,
         SessionInterface $session,
     ): Response {
-        $session->set('pig_dicehand', 5);
-        $dicehand = $session->get('pig_dicehand');
-
+        $deckOfCards = $session->get('card_hand');
+        $cardLeft = $session->get('card_left', 0);
+        if (!$deckOfCards) {
+            $this->addFlash(
+                'warning',
+                'Sessionen är tom'
+            );
+            $deck = "";
+        } else {
+            $deck = $deckOfCards->getString();
+        }
         return $this->render('card/session.html.twig', [
-            'dicehand' => $dicehand,
+            'deck' => $deck,
+            'number' => $cardLeft,
         ]);
     }
 
@@ -32,14 +41,21 @@ class CardGameController extends AbstractController
         SessionInterface $session,
     ): Response {
         $session->clear();
-        $dicehand = $session->get('pig_dicehand');
-        $this->addFlash(
-            'warning',
-            'Nu är sessionen raderad!'
-        );
+        $deckOfCards = $session->get('card_hand');
+        $cardLeft = $session->get('card_left', 0);
+        if (!$deckOfCards) {
+            $this->addFlash(
+                'warning',
+                'Sessionen är tom'
+            );
+            $deck = "";
+        } else {
+            $deck = $deckOfCards->getString();
+        }
 
         return $this->render('card/session.html.twig', [
-            'dicehand' => $dicehand,
+            'deck' => $deck,
+            'number' => $cardLeft,
         ]);
     }
 
@@ -55,13 +71,11 @@ class CardGameController extends AbstractController
     ): Response {
         $deckOfCards = $session->get('card_hand');
         $cardLeft = $session->get('card_left');
-        $session->set('card_left', $cardLeft - 1);
-        $card = new Card();
-        $card->draw();
-        $value = new CardGraphic();
+        $num = 1;
+        $deckOfCards->draw($num);
+        $session->set('card_left', count($deckOfCards->getValue()));
         $data = [
-            'draw_card' => $card->getAsString(),
-            'draw_value' => $value->getAsString(),
+            'drawn_card' => $deckOfCards->getDrawn(),
             'amount_left' => $session->get('card_left'),
         ];
 
@@ -69,11 +83,15 @@ class CardGameController extends AbstractController
     }
 
     #[Route('/card/deck', name: 'card_deck')]
-    public function deck(): Response
+    public function deck(
+        SessionInterface $session,
+    ): Response
     {
-        $deck = new DeckOfCards();
+        $deckOfCards = $session->get('card_hand');
+        $copy = clone $deckOfCards;
+        $copy->sort();
         $data = [
-            'deck' => $deck->getString(),
+            'deck' => $copy->getValue(),
         ];
 
         return $this->render('card/play/deck.html.twig', $data);
@@ -105,8 +123,8 @@ class CardGameController extends AbstractController
             throw new \Exception('Not that many cards left in deck, shuffle!');
         }
         $deckOfCards = $session->get('card_hand');
-        $session->set('card_left', count($deckOfCards->getValue()));
         $deckOfCards->draw($num);
+        $session->set('card_left', count($deckOfCards->getValue()));
         $data = [
             'deck' => $session->get('card_left'),
             'drawn_cards' => $deckOfCards->getDrawn(),

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Card;
+namespace App\Card;
 
 class CardGraphic extends Card
 {

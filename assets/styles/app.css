@@ -70,6 +70,10 @@ footer {
 .deck ul {
     gap: 30px;
 }
-.deck li {
-    color:white;
+.red {
+    color: red;
+}
+
+.black {
+    color: black;
 }
