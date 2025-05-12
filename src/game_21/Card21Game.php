@@ -58,7 +58,11 @@ class Card21Game
         $essCount = count($ess);
 
         for ($i = 0; $i < $essCount; $i++) {
-            $points += ($points + 14 > 21) ? 1 : 14;
+            if ($points + 14 > 21) {
+                $points += 1;
+                continue;
+            }
+            $points += 14;
         }
 
         return $points;
