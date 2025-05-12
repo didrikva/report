@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\Card\Card;
 use App\Controller\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class LuckyControllerTwig extends AbstractController
     #[Route('/lucky', name: 'lucky')]
     public function number(): Response
     {
-        $number = random_int(0, 100);
+        $number = random_int(0, 80);
         $facts = [
             'Chelsea FC grundades 1905.',
             'Klubben spelar sina hemmamatcher på Stamford Bridge.',
@@ -98,26 +99,6 @@ class LuckyControllerTwig extends AbstractController
             'Chelsea är kända för att ha en stark ungdomsakademi.',
             'Chelsea har haft fler än 10 olika tröjtillverkare genom tiderna.',
             'Chelsea vann sin första titel på 50 år under José Mourinho 2004/05.',
-            'Chelsea har haft mer än 10 olika klubbkaptener genom historien.',
-            'Chelsea har haft ikoniska mittbackar som Ricardo Carvalho och John Terry.',
-            'Chelsea har vunnit fler internationella titlar än Arsenal och Tottenham tillsammans.',
-            'Chelsea är en av de mest framgångsrika klubbarna i FA-cuphistorien.',
-            'Chelsea har en officiell maskot som heter Stamford the Lion.',
-            'Chelsea har varit i topp fyra i Premier League majoriteten av 2000-talet.',
-            'Chelsea har varit involverade i några av de största transfersummorna genom tiderna.',
-            'Chelsea vann sin senaste Champions League-titel utan att släppa in mål i finalen.',
-            'Chelsea var den första engelska klubben att vinna alla stora UEFA-titlar.',
-            'Chelsea har haft flera ikoniska kaptener, inklusive Dennis Wise och John Terry.',
-            'Chelsea har en lång tradition av att värva spelare från La Liga.',
-            'Chelsea slog Arsenal 6-0 i Arsène Wengers 1000:e match.',
-            'Chelsea är en av de mest värdefulla klubbarna i världen.',
-            'Chelsea är den enda engelska klubben som har vunnit alla stora UEFA-tävlingar två gånger (Champions League, Europa League, Cupvinnarcupen och Supercupen).',
-            'I säsongen 2009/10 blev Chelsea det första laget i Premier League-historien att göra över 100 mål på en säsong.',
-            'Chelsea vann sin första europeiska titel 1971 genom att besegra Real Madrid i Cupvinnarcupen.',
-            'Diego Costa vann Premier League med Chelsea två gånger (2014/15 och 2016/17).',
-            'Chelsea har haft tre olika emblem sedan klubben grundades 1905.',
-            'Ruud Gullit var den första icke-brittiska tränaren att vinna en stor engelsk titel (FA-cupen 1997 med Chelsea).',
-            'Chelsea är en av de mest populära engelska klubbarna i Asien, med miljontals fans i Kina och Indien.',
             'Under säsongen 2004/05 släppte Chelsea in endast 15 mål på hela Premier League-säsongen, ett rekord som fortfarande står kvar.',
         ];
         $data = [
@@ -299,7 +280,6 @@ class LuckyControllerTwig extends AbstractController
             $num = (int) $request->request->get('num_cards');
         }
         $deckOfCards = $session->get('card_hand');
-        $cardLeft = $session->get('card_left');
         $deckOfCards->draw($num);
         $session->set('number', $num);
         $session->set('drawn_cards', $deckOfCards->getDrawn());
@@ -316,9 +296,9 @@ class LuckyControllerTwig extends AbstractController
         $num = $session->get('number');
         $cardLeft = $session->get('card_left');
         if ($num > 52) {
-            throw new \Exception('Can not draw more than 52 cards!');
+            throw new Exception('Can not draw more than 52 cards!');
         } elseif ($num > $cardLeft) {
-            throw new \Exception('Not that many cards left in deck, shuffle!');
+            throw new Exception('Not that many cards left in deck, shuffle!');
         }
         $response = new JsonResponse([
             'number' => $session->get('number'),

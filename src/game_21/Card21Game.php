@@ -4,7 +4,7 @@ namespace App\game_21;
 
 class Card21Game
 {
-    private array $playerHand = [];
+    private array $hand = [];
     private array $bankHand = [];
     private bool $gameOver = false;
 
@@ -45,18 +45,20 @@ class Card21Game
                 $points += 13;
             } elseif ('A' === $cardValue) {
                 $ess[] = $cardValue;
-            } else {
+            } elseif (is_numeric($cardValue)) {
                 $points += (int) $cardValue;
             }
         }
-        foreach ($ess as $card) {
-            if ('A' === $card) {
-                if ($points + 14 > 21) {
-                    ++$points;
-                } else {
-                    $points += 14;
-                }
-            }
+        $points = $this->checkEss($ess, $points);
+
+        return $points;
+    }
+    private function checkEss(array $ess, int $points): int
+    {
+        $essCount = count($ess);
+
+        for ($i = 0; $i < $essCount; $i++) {
+            $points += ($points + 14 > 21) ? 1 : 14;
         }
 
         return $points;

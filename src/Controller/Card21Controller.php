@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class Card21Controller extends AbstractController
 {
-    #[Route('/game', name: 'game_21')]
+    #[Route('/game', name: 'game21')]
     public function initCallback(
     ): Response {
         return $this->render('21_game/home21.html.twig');
@@ -24,23 +24,23 @@ class Card21Controller extends AbstractController
         return $this->render('21_game/doc.html.twig');
     }
 
-    #[Route('/game/start', name: 'game_start', methods: ['GET'])]
+    #[Route('/game/start', name: 'gameStart', methods: ['GET'])]
     public function start(
     ): Response {
         return $this->render('21_game/start.html.twig');
     }
 
-    #[Route('/game/start', name: 'game_start_post', methods: ['POST'])]
+    #[Route('/game/start', name: 'gameStartPost', methods: ['POST'])]
     public function drawCard(
         SessionInterface $session,
     ): Response {
         $session->clear();
 
-        return $this->redirectToRoute('get_cards');
+        return $this->redirectToRoute('getCards');
     }
 
-    #[Route('/game/play', name: 'get_cards')]
-    public function get_cards(
+    #[Route('/game/play', name: 'getCards')]
+    public function getCards(
         SessionInterface $session,
     ): Response {
         $deck = new DeckOfCards();
@@ -48,13 +48,11 @@ class Card21Controller extends AbstractController
         $game21 = new Card21Game();
         $session->set('deck', $deck);
         $session->set('game21', $game21);
-        $gameOver = false;
         $num = 1;
         $deck->draw($num);
         $points = $game21->getPlayerPoints($deck->getDrawn());
         $session->set('hand', $deck->getDrawn());
         $session->set('points', $points);
-        $session->set('game_over', $gameOver);
         $data = [
             'hand' => $deck->getDrawn(),
             'points' => $points,
@@ -66,15 +64,14 @@ class Card21Controller extends AbstractController
         return $this->render('21_game/play.html.twig', $data);
     }
 
-    #[Route('/game/draw', name: 'draw_card')]
-    public function draw_card(
+    #[Route('/game/draw', name: 'drawCards')]
+    public function drawCards(
         SessionInterface $session,
     ): Response {
         $hand = $session->get('hand');
         $deck = $session->get('deck');
         $points = $session->get('points');
         $game21 = $session->get('game21');
-        $gameOver = $session->get('game_over');
         $num = 1;
         $deck->draw($num);
         $new = $deck->getDrawn();
@@ -107,11 +104,9 @@ class Card21Controller extends AbstractController
         $hand = $session->get('hand');
         $deck = $session->get('deck');
         $points = $session->get('points');
-        $gameOver = $session->get('game_over');
         $game21 = $session->get('game21');
         $bank = [];
-        $bankPoints = 0;
-        $test = 1;
+        $bankPoints = $game21->getBankPoints($bank);
         while ($bankPoints < $points && $bankPoints < 17) {
             $num = 1;
             $deck->draw($num);
@@ -125,9 +120,10 @@ class Card21Controller extends AbstractController
                 'Du förlorade'
             );
             $game21->gameOver();
-        } else {
+        } 
+        if ($bankPoints >= 22 || $bankPoints < $points) {
             $this->addFlash(
-                'win',
+                'win', 
                 'Du vann!'
             );
             $game21->gameOver();

@@ -20,7 +20,7 @@
 </div>
 {{ include('flash.html.twig') }}
 {% if gameOver == true %}
-<form action="{{ path('game_start') }}" method="post">
+<form action="{{ path('gameStart') }}" method="post">
     <button type="submit" class="new_game">Spela igen</button>
 </form>
 {% endif %}
@@ -36,7 +36,7 @@
         </ul>
     </div>
     <div class="button_play">
-        <a href="{{ path('draw_card') }}"><button class ="draw_card" {% if gameOver == true %}disabled{% endif %}>Dra kort</button></a>
+        <a href="{{ path('drawCards') }}"><button class ="draw_card" {% if gameOver == true %}disabled{% endif %}>Dra kort</button></a>
         <a href="{{ path('stand') }}"><button class ="stand" {% if gameOver == true %}disabled{% endif %}>Stanna</button></a>
         <h1>Dina poäng: {{points}}</h1>
     </div>

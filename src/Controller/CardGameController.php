@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -13,18 +15,12 @@ class CardGameController extends AbstractController
 {
     #[Route('/session', name: 'card_session')]
     public function initCallback(
-        Request $request,
         SessionInterface $session,
     ): Response {
         $deckOfCards = $session->get('card_hand');
         $cardLeft = $session->get('card_left', 0);
-        if (!$deckOfCards) {
-            $this->addFlash(
-                'warning',
-                'Sessionen är tom'
-            );
-            $deck = '';
-        } else {
+        $deck = '';
+        if ($deckOfCards) {
             $deck = $deckOfCards->getString();
         }
 
@@ -36,19 +32,13 @@ class CardGameController extends AbstractController
 
     #[Route('/session/delete', name: 'card_delete')]
     public function deleteCallback(
-        Request $request,
         SessionInterface $session,
     ): Response {
         $session->clear();
         $deckOfCards = $session->get('card_hand');
         $cardLeft = $session->get('card_left', 0);
-        if (!$deckOfCards) {
-            $this->addFlash(
-                'warning',
-                'Sessionen är tom'
-            );
-            $deck = '';
-        } else {
+        $deck = '';
+        if ($deckOfCards) {
             $deck = $deckOfCards->getString();
         }
 
@@ -69,7 +59,6 @@ class CardGameController extends AbstractController
         SessionInterface $session,
     ): Response {
         $deckOfCards = $session->get('card_hand');
-        $cardLeft = $session->get('card_left');
         $num = 1;
         $deckOfCards->draw($num);
         $session->set('card_left', count($deckOfCards->getValue()));
@@ -116,9 +105,9 @@ class CardGameController extends AbstractController
     ): Response {
         $cardLeft = $session->get('card_left');
         if ($num > 52) {
-            throw new \Exception('Can not draw more than 52 cards!');
+            throw new Exception('Can not draw more than 52 cards!');
         } elseif ($num > $cardLeft) {
-            throw new \Exception('Not that many cards left in deck, shuffle!');
+            throw new Exception('Not that many cards left in deck, shuffle!');
         }
         $deckOfCards = $session->get('card_hand');
         $deckOfCards->draw($num);
