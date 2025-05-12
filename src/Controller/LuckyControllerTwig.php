@@ -179,6 +179,26 @@ class LuckyControllerTwig extends AbstractController
         return $response;
     }
 
+    #[Route('/api/game', name: 'game21')]
+    public function game21(
+        SessionInterface $session,
+    ): JsonResponse {
+        $hand = $session->get('hand');
+        $points = $session->get('points');
+        $bank = $session->get('bank');
+        $bankPoints = $session->get('bankPoints');
+        $response = new JsonResponse([
+            'hand' => $hand,
+            'points' => $points,
+            'bank' => $bank,
+            'bankPoints' => $bankPoints]);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
     #[Route('/api/deck', name: 'deck')]
     public function apideck(
         SessionInterface $session,

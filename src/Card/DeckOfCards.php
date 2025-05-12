@@ -5,7 +5,7 @@ namespace App\Card;
 class DeckOfCards
 {
     protected $cards = [];
-    protected $draw_cards = [];
+    protected $drawCards = [];
 
     public function __construct()
     {
@@ -43,13 +43,13 @@ class DeckOfCards
 
     public function draw($num): void
     {
-        $this->draw_cards = array_slice($this->cards, 0, $num);
+        $this->drawCards = array_slice($this->cards, 0, $num);
         $this->cards = array_slice($this->cards, $num);
     }
 
     public function getDrawn(): array
     {
-        return $this->draw_cards;
+        return $this->drawCards;
     }
 
     public function getValue(): array
@@ -66,9 +66,9 @@ class DeckOfCards
 
             if (is_numeric($cardValue) && 10 != $cardValue) {
                 $number[] = $card;
-            } else {
-                $rest[] = $card;
             }
+
+            $rest[] = $card;
         }
         $order = ['10', 'J', 'Q', 'K', 'A'];
         $sorted = [];

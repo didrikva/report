@@ -211,3 +211,17 @@ footer {
     border: #FFFACD 10px dotted;
     border-radius: 30% 30% 5% 5%;
 }
+
+.new_game {
+    width: 100px;
+    height: 50px;
+    color: black;
+    border: double black 10px;
+    border-radius: 20%;
+    align-self: center;
+    margin-top: 50px;
+}
+
+.new_game:hover {
+    transform: scale(1.1);
+}
