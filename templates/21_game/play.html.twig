@@ -3,7 +3,25 @@
 {% block title %}Card Game{% endblock %}
 
 {% block body %}
-<div class="table-top"></div>
+<div class="table-top">
+    <div class="button_play">
+         <h1>Bankens poäng: {{bankPoints}}</h1>
+    </div>
+    <div class="deck_21">
+        <ul>
+            {% for card in bank %}
+                {% set symbol = card|slice(-1) %}
+                <li class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
+                    {{ card }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{{ include('flash.html.twig') }}
+{% if  not game_over%}
+<a href="{{ path('game_start') }}"><button class ="draw_card">Spela igen</button></a>
+{% endif %}
 <div class="table-bottom">
     <div class="deck_21">
         <ul>
@@ -16,8 +34,10 @@
         </ul>
     </div>
     <div class="button_play">
-        <a href="{{ path('draw_card') }}"><button class ="draw_card">Dra kort</button></a>
-        <a href="{{ path('game_start') }}"><button class ="stand">Stanna</button></a>
+        <a href="{{ path('draw_card') }}"><button class ="draw_card" {% if points > 21 %}disabled{% endif %}>Dra kort</button></a>
+        <a href="{{ path('stand') }}"><button class ="stand" {% if points > 21 %}disabled{% endif %}>Stanna</button></a>
+        <a href="{{ path('game_start') }}"><button class ="stand">Strat</button></a>
+        <h1>Dina poäng: {{points}}</h1>
     </div>
 </div>
 {% endblock %}

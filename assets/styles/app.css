@@ -123,14 +123,13 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .table-bottom {
     border-radius: 50% 50% 0 0;
     margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .start_game {
@@ -151,7 +150,7 @@ footer {
 }
 
 .deck_21 {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .button_play {
@@ -178,4 +177,37 @@ footer {
     border-radius: 20%;
     align-self: center;
     background-color: red;
+}
+
+.stand:hover {
+    transform: scale(1.1);
+}
+
+.draw_card:hover {
+    transform: scale(1.1);
+}
+
+.flash-warning {
+    background-color: red;
+    width: 300px;
+    height: 70px;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 100px;
+    padding-top: 30px;
+    border: yellow 10px dotted;
+    border-radius: 30% 30% 5% 5%;
+}
+
+.flash-win {
+    background-color: #1E1F3B;
+    color: #FFD700;
+    width: 300px;
+    height: 70px;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 100px;
+    padding-top: 30px;
+    border: #FFFACD 10px dotted;
+    border-radius: 30% 30% 5% 5%;
 }
