@@ -2,8 +2,6 @@
 
 namespace App\Dice;
 
-use App\Dice\Dice;
-
 class DiceHand
 {
     private $hand = [];

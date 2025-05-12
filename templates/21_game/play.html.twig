@@ -1,0 +1,23 @@
+{% extends "21_game/base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block body %}
+<div class="table-top"></div>
+<div class="table-bottom">
+    <div class="deck_21">
+        <ul>
+            {% for card in hand %}
+                {% set symbol = card|slice(-1) %}
+                <li class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
+                    {{ card }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="button_play">
+        <a href="{{ path('draw_card') }}"><button class ="draw_card">Dra kort</button></a>
+        <a href="{{ path('game_start') }}"><button class ="stand">Stanna</button></a>
+    </div>
+</div>
+{% endblock %}

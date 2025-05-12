@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Card\Card;
-use App\Card\CardGraphic;
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +23,11 @@ class CardGameController extends AbstractController
                 'warning',
                 'Sessionen är tom'
             );
-            $deck = "";
+            $deck = '';
         } else {
             $deck = $deckOfCards->getString();
         }
+
         return $this->render('card/session.html.twig', [
             'deck' => $deck,
             'number' => $cardLeft,
@@ -48,7 +47,7 @@ class CardGameController extends AbstractController
                 'warning',
                 'Sessionen är tom'
             );
-            $deck = "";
+            $deck = '';
         } else {
             $deck = $deckOfCards->getString();
         }
@@ -85,8 +84,7 @@ class CardGameController extends AbstractController
     #[Route('/card/deck', name: 'card_deck')]
     public function deck(
         SessionInterface $session,
-    ): Response
-    {
+    ): Response {
         $deckOfCards = $session->get('card_hand');
         $copy = clone $deckOfCards;
         $copy->sort();

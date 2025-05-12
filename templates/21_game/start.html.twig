@@ -1,0 +1,10 @@
+{% extends "21_game/base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block body %}
+<div class="table-top"></div>
+<div class="table-bottom">
+    <a href="{{ path('get_cards') }}"><button class ="start_game">Starta spel</button></a>
+</div>
+{% endblock %}

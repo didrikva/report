@@ -77,3 +77,105 @@ footer {
 .black {
     color: black;
 }
+
+.game_start {
+    width: 150px;
+    height: 75px;
+    color: black;
+    border: double black 10px;
+    border-radius: 20%;
+    align-self: center;
+    margin-top: 2rem;
+}
+
+.game_start a {
+    color: black;
+}
+
+.game_start:hover {
+    transform: scale(1.2);
+}
+
+.game_21 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+}
+
+.table {
+    background-color: #0b6623;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+}
+
+.table-top,
+.table-bottom {
+    width: 80%;
+    height: 250px;
+    background-color: #054016;
+    border-radius: 0 0 50% 50%;
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-bottom {
+    border-radius: 50% 50% 0 0;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.start_game {
+    width: 150px;
+    height: 75px;
+    color: black;
+    border: double black 10px;
+    border-radius: 20%;
+    margin-top: 2rem;
+}
+
+.start_game a {
+    color: black;
+}
+
+.start_game:hover {
+    transform: scale(1.2);
+}
+
+.deck_21 {
+    font-size: 50px;
+}
+
+.button_play {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+}
+
+.draw_card {
+    width: 100px;
+    height: 50px;
+    color: black;
+    border: double black 10px;
+    border-radius: 20%;
+    align-self: center;
+}
+
+.stand {
+    width: 100px;
+    height: 50px;
+    color: white;
+    border: double #6d0101 10px;
+    border-radius: 20%;
+    align-self: center;
+    background-color: red;
+}
