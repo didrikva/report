@@ -20,11 +20,6 @@ class DeckOfCards
             }
         }
     }
-
-    // public function getAsString(): string
-    // {
-    //     return "[{$this->cards}]";
-    // }
     /**
     * @return string[]
     */
