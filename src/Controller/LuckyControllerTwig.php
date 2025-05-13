@@ -44,7 +44,7 @@ class LuckyControllerTwig extends AbstractController
         return $this->render('api.html.twig', $data);
     }
 
-    #[Route('/api/game', name: 'game21')]
+    #[Route('/api/game', name: 'game21api')]
     public function game21(
         SessionInterface $session,
     ): JsonResponse {
