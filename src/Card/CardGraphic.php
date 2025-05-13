@@ -4,27 +4,28 @@ namespace App\Card;
 
 class CardGraphic extends Card
 {
-    private $representation = [
+    /** @var string[] */
+    private array $representation = [
         '♥',
         '♦',
         '♣',
         '♠',
     ];
+    protected string $value;
 
     public function __construct()
     {
         parent::__construct();
-        $this->value = random_int(0, 3);
     }
 
-    public function getValue($num): string
+    public function getValue(int $num): string
     {
         $this->value = $this->representation[$num];
 
         return $this->value;
     }
 
-    public function getString($num): string
+    public function getString(int $num): string
     {
         return $this->representation[$num];
     }

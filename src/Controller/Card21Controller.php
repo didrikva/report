@@ -68,12 +68,16 @@ class Card21Controller extends AbstractController
     public function drawCards(
         SessionInterface $session,
     ): Response {
+        /** @var string[] $hand */
         $hand = $session->get('hand');
+        /** @var DeckOfCards $deck */
         $deck = $session->get('deck');
         $points = $session->get('points');
+        /** @var Card21Game $game21 */
         $game21 = $session->get('game21');
         $num = 1;
         $deck->draw($num);
+        /** @var string[] $new */
         $new = $deck->getDrawn();
         $hand = array_merge($hand, $new);
         $points = $game21->getPlayerPoints($hand);
@@ -102,8 +106,10 @@ class Card21Controller extends AbstractController
         SessionInterface $session,
     ): Response {
         $hand = $session->get('hand');
+        /** @var DeckOfCards $deck */
         $deck = $session->get('deck');
         $points = $session->get('points');
+        /** @var Card21Game $game21 */
         $game21 = $session->get('game21');
         $bank = [];
         $bankPoints = $game21->getBankPoints($bank);

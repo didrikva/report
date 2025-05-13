@@ -22,11 +22,13 @@
     <rule ref="rulesets/naming.xml">
         <exclude name="ShortVariable" />
         <exclude name="ShortMethodName" />
+        <exclude name="MissingImport" />
     </rule>
 
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
             <property name="exceptions" value="db,id,di" />
+            <property name="exclude" value="MissingImport" />
         </properties>
     </rule>
 

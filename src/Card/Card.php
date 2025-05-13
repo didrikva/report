@@ -4,8 +4,10 @@ namespace App\Card;
 
 class Card
 {
-    protected $value;
-
+    protected string $value;
+    /**
+    * @var non-empty-array<int, string>
+    */
     protected array $cards = [
         '2', '3', '4', '5', '6', '7', '8', '9', '10',
         'J', 'Q', 'K', 'A',
@@ -13,7 +15,7 @@ class Card
 
     public function __construct()
     {
-        $this->value = null;
+        $this->value = "";
     }
 
     public function draw(): string
@@ -23,7 +25,7 @@ class Card
         return $this->value;
     }
 
-    public function getValue($num): string
+    public function getValue(int $num): string
     {
         $this->value = $this->cards[$num];
 

@@ -4,8 +4,10 @@ namespace App\Card;
 
 class DeckOfCards
 {
-    protected $cards = [];
-    protected $drawCards = [];
+    /** @var string[] */
+    protected array $cards = [];
+    /** @var string[] */
+    protected array $drawCards = [];
 
     public function __construct()
     {
@@ -19,11 +21,13 @@ class DeckOfCards
         }
     }
 
-    public function getAsString(): string
-    {
-        return "[{$this->cards}]";
-    }
-
+    // public function getAsString(): string
+    // {
+    //     return "[{$this->cards}]";
+    // }
+    /**
+    * @return string[]
+    */
     public function getString(): array
     {
         $values = [];
@@ -34,6 +38,9 @@ class DeckOfCards
         return $values;
     }
 
+    /**
+    * @return string[]
+    */
     public function shuffle(): array
     {
         shuffle($this->cards);
@@ -41,22 +48,29 @@ class DeckOfCards
         return $this->cards;
     }
 
-    public function draw($num): void
+    public function draw(int $num): void
     {
         $this->drawCards = array_slice($this->cards, 0, $num);
         $this->cards = array_slice($this->cards, $num);
     }
 
+    /**
+     * @return string[]
+     */
     public function getDrawn(): array
     {
         return $this->drawCards;
     }
-
+    /**
+     * @return string[]
+     */
     public function getValue(): array
     {
         return $this->cards;
     }
-
+    /**
+     * @return string[]
+     */
     public function sort(): array
     {
         $number = [];

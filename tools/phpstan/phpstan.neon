@@ -4,5 +4,7 @@ parameters:
         - ../../config
         - ../../src
         - ../../tests
+    ignoreErrors:
+        - '#Property .* is never read, only written.#'
     bootstrapFiles:
         #- .phpstan.constants.php

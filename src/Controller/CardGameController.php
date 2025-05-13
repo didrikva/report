@@ -5,7 +5,8 @@ namespace App\Controller;
 
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Exception;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -17,10 +18,11 @@ class CardGameController extends AbstractController
     public function initCallback(
         SessionInterface $session,
     ): Response {
+        /** @var DeckOfCards|null $deckOfCards */
         $deckOfCards = $session->get('card_hand');
         $cardLeft = $session->get('card_left', 0);
         $deck = '';
-        if ($deckOfCards) {
+        if ($deckOfCards !== null) {
             $deck = $deckOfCards->getString();
         }
 
@@ -35,10 +37,11 @@ class CardGameController extends AbstractController
         SessionInterface $session,
     ): Response {
         $session->clear();
+        /** @var DeckOfCards|null $deckOfCards */
         $deckOfCards = $session->get('card_hand');
         $cardLeft = $session->get('card_left', 0);
         $deck = '';
-        if ($deckOfCards) {
+        if ($deckOfCards !== null) {
             $deck = $deckOfCards->getString();
         }
 
@@ -58,6 +61,7 @@ class CardGameController extends AbstractController
     public function draw(
         SessionInterface $session,
     ): Response {
+        /** @var DeckOfCards $deckOfCards */
         $deckOfCards = $session->get('card_hand');
         $num = 1;
         $deckOfCards->draw($num);
@@ -74,6 +78,7 @@ class CardGameController extends AbstractController
     public function deck(
         SessionInterface $session,
     ): Response {
+        /** @var DeckOfCards $deckOfCards */
         $deckOfCards = $session->get('card_hand');
         $copy = clone $deckOfCards;
         $copy->sort();
@@ -109,6 +114,7 @@ class CardGameController extends AbstractController
         } elseif ($num > $cardLeft) {
             throw new Exception('Not that many cards left in deck, shuffle!');
         }
+        /** @var DeckOfCards $deckOfCards */
         $deckOfCards = $session->get('card_hand');
         $deckOfCards->draw($num);
         $session->set('card_left', count($deckOfCards->getValue()));

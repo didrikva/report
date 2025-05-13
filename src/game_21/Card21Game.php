@@ -4,33 +4,49 @@ namespace App\game_21;
 
 class Card21Game
 {
+    /**
+     * @var string[]
+     */
     private array $hand = [];
+    /** @var string[] */
     private array $bankHand = [];
     private bool $gameOver = false;
+    /** @var string[] */
+    private array $deck = [];
 
     public function __construct()
     {
     }
 
-    public function setDeck($deck): void
+    /**
+     * @param string[] $deck
+     */
+    public function setDeck(array $deck): void
     {
         $this->deck = $deck;
     }
 
+    /**
+     * @param string[] $hand
+     */
     public function getPlayerPoints(array $hand): int
     {
         $this->hand = $hand;
 
         return $this->calcPoints($this->hand);
     }
-
+    /**
+     * @param string[] $bank
+     */
     public function getBankPoints(array $bank): int
     {
         $this->bankHand = $bank;
 
         return $this->calcPoints($this->bankHand);
     }
-
+    /**
+     * @param string[] $hand
+     */
     private function calcPoints(array $hand): int
     {
         $points = 0;
@@ -53,6 +69,9 @@ class Card21Game
 
         return $points;
     }
+    /**
+     * @param string[] $ess
+     */
     private function checkEss(array $ess, int $points): int
     {
         $essCount = count($ess);
