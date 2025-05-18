@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1747581495">
-  <project timestamp="1747581495">
+<coverage generated="1747582426">
+  <project timestamp="1747582426">
     <package name="Didrik\Card">
       <file name="/home/didrik/dbwebb-kurser/mvc/me/report/phpunit/src/Card/Card.php">
         <class name="Didrik\Card\Card" namespace="Didrik\Card">
