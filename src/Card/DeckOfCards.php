@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Card;
+/**
+ * Class that creates the deck with both the card and graphic cards
+ */
 
 class DeckOfCards
 {
@@ -8,7 +11,9 @@ class DeckOfCards
     protected array $cards = [];
     /** @var string[] */
     protected array $drawCards = [];
-
+    /**
+     * The constructor that creates a new deck
+     */
     public function __construct()
     {
         for ($i = 0; $i < 4; ++$i) {
@@ -21,6 +26,7 @@ class DeckOfCards
         }
     }
     /**
+    * Get the string from the deck
     * @return string[]
     */
     public function getString(): array
@@ -34,6 +40,7 @@ class DeckOfCards
     }
 
     /**
+     * shuffle the deck
     * @return string[]
     */
     public function shuffle(): array
@@ -43,6 +50,9 @@ class DeckOfCards
         return $this->cards;
     }
 
+    /**
+     * draw cards from the deck, split the deck into drawn cards and the rest.
+    */
     public function draw(int $num): void
     {
         $this->drawCards = array_slice($this->cards, 0, $num);
@@ -50,6 +60,7 @@ class DeckOfCards
     }
 
     /**
+     * get the drawn cards
      * @return string[]
      */
     public function getDrawn(): array
@@ -57,6 +68,7 @@ class DeckOfCards
         return $this->drawCards;
     }
     /**
+     * Get the rest of the deck
      * @return string[]
      */
     public function getValue(): array
@@ -64,6 +76,7 @@ class DeckOfCards
         return $this->cards;
     }
     /**
+     * Sort the deck after color and value
      * @return string[]
      */
     public function sort(): array
