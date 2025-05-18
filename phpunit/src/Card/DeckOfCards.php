@@ -1,18 +1,19 @@
 <?php
 
 namespace Didrik\Card;
-/**
- * Class that creates the deck with both the card and graphic cards
- */
 
+/**
+ * Class that creates the deck with both the card and graphic cards.
+ */
 class DeckOfCards
 {
     /** @var string[] */
     protected array $cards = [];
     /** @var string[] */
     protected array $drawCards = [];
+
     /**
-     * The constructor that creates a new deck
+     * The constructor that creates a new deck.
      */
     public function __construct()
     {
@@ -25,10 +26,12 @@ class DeckOfCards
             }
         }
     }
+
     /**
-    * Get the string from the deck
-    * @return string[]
-    */
+     * Get the string from the deck.
+     *
+     * @return string[]
+     */
     public function getString(): array
     {
         $values = [];
@@ -40,9 +43,10 @@ class DeckOfCards
     }
 
     /**
-     * shuffle the deck
-    * @return string[]
-    */
+     * shuffle the deck.
+     *
+     * @return string[]
+     */
     public function shuffle(): array
     {
         shuffle($this->cards);
@@ -52,7 +56,7 @@ class DeckOfCards
 
     /**
      * draw cards from the deck, split the deck into drawn cards and the rest.
-    */
+     */
     public function draw(int $num): void
     {
         $this->drawCards = array_slice($this->cards, 0, $num);
@@ -60,23 +64,28 @@ class DeckOfCards
     }
 
     /**
-     * get the drawn cards
+     * get the drawn cards.
+     *
      * @return string[]
      */
     public function getDrawn(): array
     {
         return $this->drawCards;
     }
+
     /**
-     * Get the rest of the deck
+     * Get the rest of the deck.
+     *
      * @return string[]
      */
     public function getValue(): array
     {
         return $this->cards;
     }
+
     /**
-     * Sort the deck after color and value
+     * Sort the deck after color and value.
+     *
      * @return string[]
      */
     public function sort(): array

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Card;
+
 /**
- * Class that creates the graphic of the card
+ * Class that creates the graphic of the card.
  */
 class CardGraphic extends Card
 {
@@ -16,7 +17,7 @@ class CardGraphic extends Card
     protected string $value;
 
     /**
-     * Construktor
+     * Construktor.
      */
     public function __construct()
     {
@@ -24,7 +25,7 @@ class CardGraphic extends Card
     }
 
     /**
-     * Get the value from the graphic
+     * Get the value from the graphic.
      */
     public function getValue(int $num): string
     {
@@ -34,7 +35,7 @@ class CardGraphic extends Card
     }
 
     /**
-     * Get the string from a given graphic
+     * Get the string from a given graphic.
      */
     public function getString(int $num): string
     {
@@ -42,7 +43,7 @@ class CardGraphic extends Card
     }
 
     /**
-     * Get the string for the graphic
+     * Get the string for the graphic.
      */
     public function getAsString(): string
     {

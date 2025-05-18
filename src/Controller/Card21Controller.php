@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Card\DeckOfCards;
 use App\game_21\Card21Game;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -126,10 +125,10 @@ class Card21Controller extends AbstractController
                 'Du förlorade'
             );
             $game21->gameOver();
-        } 
+        }
         if ($bankPoints >= 22 || $bankPoints < $points) {
             $this->addFlash(
-                'win', 
+                'win',
                 'Du vann!'
             );
             $game21->gameOver();

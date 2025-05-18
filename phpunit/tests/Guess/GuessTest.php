@@ -23,8 +23,6 @@ class GuessTest extends TestCase
         $this->assertEquals($exp, $res);
     }
 
-
-
     /**
      * Construct object and verify that the object has the expected
      * properties, use only first argument.
@@ -42,8 +40,6 @@ class GuessTest extends TestCase
         $exp = 42;
         $this->assertEquals($exp, $res);
     }
-
-
 
     /**
      * Construct object and verify that the object has the expected

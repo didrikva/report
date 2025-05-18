@@ -5,18 +5,15 @@ namespace App\Controller;
 use App\Card\Card;
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
-use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerTwig extends AbstractController
 {
-    
-
     #[Route('/', name: 'mig')]
     public function home(): Response
     {
@@ -34,6 +31,7 @@ class LuckyControllerTwig extends AbstractController
     {
         return $this->render('report.html.twig');
     }
+
     #[Route('/api', name: 'api')]
     public function api(): Response
     {

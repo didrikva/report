@@ -7,5 +7,4 @@ namespace Didrik\Guess;
  */
 class GuessException extends \Exception
 {
-
 }

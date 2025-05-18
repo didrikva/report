@@ -1,8 +1,9 @@
 <?php
 
 namespace App\game_21;
+
 /**
- * Class for the card game 21
+ * Class for the card game 21.
  */
 class Card21Game
 {
@@ -17,14 +18,15 @@ class Card21Game
     private array $deck = [];
 
     /**
-     * constructor
+     * constructor.
      */
     public function __construct()
     {
     }
 
     /**
-     * Set the given deck
+     * Set the given deck.
+     *
      * @param string[] $deck
      */
     public function setDeck(array $deck): void
@@ -33,7 +35,8 @@ class Card21Game
     }
 
     /**
-     * Calculates and returns the players points
+     * Calculates and returns the players points.
+     *
      * @param string[] $hand
      */
     public function getPlayerPoints(array $hand): int
@@ -42,8 +45,10 @@ class Card21Game
 
         return $this->calcPoints($this->hand);
     }
+
     /**
-     * Calculates and returns the banks points
+     * Calculates and returns the banks points.
+     *
      * @param string[] $bank
      */
     public function getBankPoints(array $bank): int
@@ -52,8 +57,10 @@ class Card21Game
 
         return $this->calcPoints($this->bankHand);
     }
+
     /**
-     * Calculates the points for the given hand
+     * Calculates the points for the given hand.
+     *
      * @param string[] $hand
      */
     private function calcPoints(array $hand): int
@@ -78,17 +85,19 @@ class Card21Game
 
         return $points;
     }
+
     /**
-     * Function to calculate if a ess is worth 1 or 14 points
+     * Function to calculate if a ess is worth 1 or 14 points.
+     *
      * @param string[] $ess
      */
     private function checkEss(array $ess, int $points): int
     {
         $essCount = count($ess);
 
-        for ($i = 0; $i < $essCount; $i++) {
+        for ($i = 0; $i < $essCount; ++$i) {
             if ($points + 14 > 21) {
-                $points += 1;
+                ++$points;
                 continue;
             }
             $points += 14;
@@ -98,7 +107,7 @@ class Card21Game
     }
 
     /**
-     * Checks if the game is still playing
+     * Checks if the game is still playing.
      */
     public function endGame(): bool
     {
@@ -106,7 +115,7 @@ class Card21Game
     }
 
     /**
-     * Function that ends the game
+     * Function that ends the game.
      */
     public function gameOver(): void
     {

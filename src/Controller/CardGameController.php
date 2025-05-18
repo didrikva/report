@@ -2,13 +2,10 @@
 
 namespace App\Controller;
 
-
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
-use Exception;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Exception;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,7 +19,7 @@ class CardGameController extends AbstractController
         $deckOfCards = $session->get('card_hand');
         $cardLeft = $session->get('card_left', 0);
         $deck = '';
-        if ($deckOfCards !== null) {
+        if (null !== $deckOfCards) {
             $deck = $deckOfCards->getString();
         }
 
@@ -41,7 +38,7 @@ class CardGameController extends AbstractController
         $deckOfCards = $session->get('card_hand');
         $cardLeft = $session->get('card_left', 0);
         $deck = '';
-        if ($deckOfCards !== null) {
+        if (null !== $deckOfCards) {
             $deck = $deckOfCards->getString();
         }
 
