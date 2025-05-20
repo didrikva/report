@@ -276,3 +276,46 @@ input[type=submit] {
     object-fit: cover;
     border-radius: 4px;
 }
+
+.update {
+    margin-left: 100px;
+    width: 150px;
+    height: 75px;
+    color: black;
+    border: double black 10px;
+    border-radius: 20%;
+    margin-top: 2rem;
+}
+
+.delete {
+    margin-left: 250px;
+    width: 150px;
+    height: 75px;
+    background-color: red;
+    color: white;
+    border: double black 10px;
+    border-radius: 20%;
+    margin-top: 2rem;
+}
+
+.update:hover {
+    transform: scale(1.2);
+}
+
+.delete:hover {
+    transform: scale(1.2);
+}
+
+.tillbaka {
+    margin-left: 120px;
+    width: 150px;
+    height: 75px;
+    color: black;
+    border: double black 10px;
+    border-radius: 20%;
+    margin-top: 4rem;
+}
+
+.tillbaka:hover {
+    transform: scale(1.2);
+}

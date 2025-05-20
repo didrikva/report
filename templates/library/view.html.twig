@@ -23,16 +23,23 @@
         <tbody>
             {% for library in librarys %}
                 <tr>
-                    <td>{{ library.getId|e }}</td>
+                    <td>
+                        <a href="{{ path('view_one', { id: library.getId }) }}">
+                            {{ library.getId }}
+                        </a>
+                    </td>
                     <td>{{ library.getTitel|e }}</td>
                     <td>{{ library.getIsbn|e }}</td>
                     <td>{{ library.getForfattare|e }}</td>
                     <td>
-                        <img src="{{ asset(library.getImg) }}" alt="{{ library.getTitel }}" style="height: 80px;" />
+                        <a href="{{ path('view_one', { id: library.getId }) }}">
+                            <img src="{{ asset(library.getImg) }}" alt="{{ library.getTitel }}" style="height: 80px;" />
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+     <a href="{{ path('library_create_get') }}"><button class ="update">Lägg till ny bok</button></a>
 </div>
 {% endblock %}

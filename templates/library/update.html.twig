@@ -18,10 +18,11 @@
         <label for="forfattare">Författare:</label>
         <input type="text" name="forfattare" value="{{ library.forfattare }}">
         <label for="img">Bild: (optinal)</label>
-        <input type="text" name="img" value="{{ library.img }}">
+        <input type="text" name="img" placeholder="img/" value="{{ library.img }}">
 
         <input type="submit" value="Spara bok">
     </form>
+    <a href="{{ path('view_one', { id: library.getId }) }}"><button class ="update">Tillbaka</button></a>
 
 </div>
 {% endblock %}

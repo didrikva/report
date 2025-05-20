@@ -138,7 +138,6 @@ final class LibraryController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $library = $entityManager->getRepository(library::class)->find($id);
-        var_dump($library);
         return $this->render('library/update.html.twig', [
             'library' => $library,
         ]);
@@ -166,5 +165,17 @@ final class LibraryController extends AbstractController
         $entityManager->flush();
         $library = $libraryRepository->findAll();
         return $this->redirectToRoute('library_view_all');
+    }
+    #[Route('/library/view/{id}', name: 'view_one')]
+    public function view(
+        ManagerRegistry $doctrine,
+        int $id
+    ): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $library = $entityManager->getRepository(library::class)->find($id);
+        return $this->render('library/one.html.twig', [
+            'library' => $library,
+        ]);
     }
 }
