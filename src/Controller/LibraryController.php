@@ -178,4 +178,21 @@ final class LibraryController extends AbstractController
             'library' => $library,
         ]);
     }
+    #[Route('api/library/show', name: 'library_show_all_api')]
+    public function showAllApi(
+        LibraryRepository $libraryRepository
+    ): Response {
+        $library = $libraryRepository
+            ->findAll();
+
+        return $this->json($library);
+    }
+    #[Route('api/library/book/{isbn}', name: 'library_show_all_api')]
+    public function showBookIsbn(
+        LibraryRepository $libraryRepository,
+        int $isbn
+    ): Response {
+        $library = $libraryRepository->findByValue($isbn);
+        return $this->json($library);
+    }
 }

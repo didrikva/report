@@ -15,6 +15,26 @@ class LibraryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Library::class);
     }
+    /**
+     * Find all producs having a value above the specified one with SQL.
+     * 
+     * @return [][] Returns an array of arrays (i.e. a raw data set)
+     */
+    public function findByValue($value): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM Library AS l
+            WHERE l.isbn = :value
+            ORDER BY l.isbn ASC
+        ';
+
+        $resultSet = $conn->executeQuery($sql, ['value' => $value]);
+
+        return $resultSet->fetchAllAssociative();
+    }
+
 
     //    /**
     //     * @return Library[] Returns an array of Library objects
