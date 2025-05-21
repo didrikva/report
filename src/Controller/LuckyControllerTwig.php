@@ -122,27 +122,6 @@ class LuckyControllerTwig extends AbstractController
 
         return $response;
     }
-
-    // #[Route("/api/deck/shuffle", name: "init_get", methods: ['GET'])]
-    // public function initget(
-    //     SessionInterface $session
-    // ): Response
-    // {
-    //     return $this->redirectToRoute('init_post');
-    // }
-    // #[Route("/api/deck/shuffle", name: "shuffle_get", methods: ['GET'])]
-    // public function apishuffleget(
-    //     SessionInterface $session
-    // ): JsonResponse
-    // {
-    //     $deck = $session->get("card_hand");
-    //     $response = new JsonResponse([
-    //         'deck' => $deck->getString()]);
-    //     $response->setEncodingOptions(
-    //         $response->getEncodingOptions() | JSON_PRETTY_PRINT
-    //     );
-    //     return $response;
-    // }
     #[Route('/api/deck/draw', name: 'card_init_get', methods: ['GET'])]
     #[Route("/api/deck/draw/{num<\d+>}", name: 'card_init_get_number', methods: ['GET'])]
     public function init(int $num = 1): Response
@@ -195,33 +174,4 @@ class LuckyControllerTwig extends AbstractController
 
         return $response;
     }
-    // #[Route("/api/deck/draw/{num<\d+>}", name: "card_init_get", methods: ['GET'])]
-    // public function initNum(
-    //     SessionInterface $session,
-    //     int $num
-    // ): Response
-    // {
-    //     $session->set("number", $num);
-    //     return $this->redirectToRoute('card_init_post');
-    // }
-    // #[Route("/api/deck/draw/result", name: "card_init_post", methods: ['POST'])]
-    // public function initCallback(
-    //     SessionInterface $session
-    // ): Response
-    // {
-    //     $num = $session->get("number");
-    //     $deckOfCards = $session->get("card_hand");
-    //     $cardLeft = $session->get("card_left");
-    //     if ($num > 52) {
-    //         throw new \Exception("Can not draw more than 52 cards!");
-    //     } elseif ($num > $cardLeft) {
-    //         throw new \Exception("Not that many cards left in deck, shuffle!");
-    //     };
-    //     $deckOfCards->draw($num);
-    //     $session->set("drawn_cards", $deckOfCards->getDrawn());
-    //     $session->set("card_hand", $deckOfCards);
-    //     $session->set("card_left", count($deckOfCards->getValue()));
-
-    //     return $this->redirectToRoute('api_draw');
-    // }
 }
