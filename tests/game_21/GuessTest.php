@@ -62,7 +62,7 @@ class GuessTest extends TestCase
     }
 
     /**
-     * Checks if getDeck and setDeck is correct.
+     * Checks if getDeck and setDeck return correct values.
      */
     public function testSetDeck(): void
     {
