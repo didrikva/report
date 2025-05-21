@@ -1,8 +1,8 @@
 <?php
 
-namespace Didrik\tests\CardTest;
+namespace App\tests\CardTest;
 
-use Didrik\Card\Card;
+use App\Card\Card;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +16,7 @@ class CardTest extends TestCase
     public function testRightValue(): void
     {
         $card = new Card();
-        $this->assertInstanceOf("\Didrik\Card\Card", $card);
+        $this->assertInstanceOf("\App\Card\Card", $card);
         $value = $card->getValue(4);
 
         $this->assertEquals(6, $value);
@@ -28,7 +28,7 @@ class CardTest extends TestCase
     public function testDraw(): void
     {
         $card = new Card();
-        $this->assertInstanceOf("\Didrik\Card\Card", $card);
+        $this->assertInstanceOf("\App\Card\Card", $card);
         $value = $card->draw();
 
         $cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
@@ -41,7 +41,7 @@ class CardTest extends TestCase
     public function testString(): void
     {
         $card = new Card();
-        $this->assertInstanceOf("\Didrik\Card\Card", $card);
+        $this->assertInstanceOf("\App\Card\Card", $card);
         $card->getValue(8);
         $string = $card->getAsString();
 
@@ -54,7 +54,7 @@ class CardTest extends TestCase
     public function testStrignAfterDraw(): void
     {
         $card = new Card();
-        $this->assertInstanceOf("\Didrik\Card\Card", $card);
+        $this->assertInstanceOf("\App\Card\Card", $card);
         $drawn = $card->draw();
         $string = $card->getAsString();
 

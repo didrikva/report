@@ -1,8 +1,8 @@
 <?php
 
-namespace Didrik\tests\CardGraphicTest;
+namespace App\tests\CardGraphicTest;
 
-use Didrik\Card\CardGraphic;
+use App\Card\CardGraphic;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +16,7 @@ class CardGraphicTest extends TestCase
     public function testRightValue(): void
     {
         $graphic = new CardGraphic();
-        $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);
+        $this->assertInstanceOf("\App\Card\CardGraphic", $graphic);
         $value = $graphic->getValue(2);
 
         $this->assertEquals('♣', $value);
@@ -28,7 +28,7 @@ class CardGraphicTest extends TestCase
     public function testString(): void
     {
         $graphic = new CardGraphic();
-        $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);
+        $this->assertInstanceOf("\App\Card\CardGraphic", $graphic);
         $value = $graphic->getString(2);
 
         $this->assertEquals('♣', $value);
@@ -40,7 +40,7 @@ class CardGraphicTest extends TestCase
     public function testStringAfterValue(): void
     {
         $graphic = new CardGraphic();
-        $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);
+        $this->assertInstanceOf("\App\Card\CardGraphic", $graphic);
         $value = $graphic->getValue(2);
         $string = $graphic->getString(2);
 
@@ -53,7 +53,7 @@ class CardGraphicTest extends TestCase
     public function testStringNotInt(): void
     {
         $graphic = new CardGraphic();
-        $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);
+        $this->assertInstanceOf("\App\Card\CardGraphic", $graphic);
         $value = $graphic->getValue('0');
 
         $this->assertEquals('♥', $value);

@@ -1,8 +1,8 @@
 <?php
 
-namespace Didrik\tests\TestGuess21Game;
+namespace App\tests\TestGuess21Game;
 
-use Didrik\game_21\Card21Game;
+use App\game_21\Card21Game;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +16,7 @@ class GuessTest extends TestCase
     public function testPlayerpoints(): void
     {
         $game = new Card21Game();
-        $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
+        $this->assertInstanceOf("\App\game_21\Card21Game", $game);
         $hand = ['[5]', '[Q]', '[2]'];
         $points = $game->getPlayerPoints($hand);
 
@@ -29,7 +29,7 @@ class GuessTest extends TestCase
     public function testBankpoints(): void
     {
         $game = new Card21Game();
-        $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
+        $this->assertInstanceOf("\App\game_21\Card21Game", $game);
         $hand = ['[K]', '[8]'];
         $points = $game->getBankPoints($hand);
 
@@ -42,7 +42,7 @@ class GuessTest extends TestCase
     public function testEndGame(): void
     {
         $game = new Card21Game();
-        $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
+        $this->assertInstanceOf("\App\game_21\Card21Game", $game);
         $endGame = $game->EndGame();
 
         $this->assertEquals(false, $endGame);
@@ -54,7 +54,7 @@ class GuessTest extends TestCase
     public function testGameOver(): void
     {
         $game = new Card21Game();
-        $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
+        $this->assertInstanceOf("\App\game_21\Card21Game", $game);
         $game->gameOver();
         $endGame = $game->EndGame();
 
@@ -67,7 +67,7 @@ class GuessTest extends TestCase
     public function testSetDeck(): void
     {
         $game = new Card21Game();
-        $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
+        $this->assertInstanceOf("\App\game_21\Card21Game", $game);
         $deck = ['[H2]', '[D3]', '[S5]'];
         $game->setDeck($deck);
 
@@ -80,7 +80,7 @@ class GuessTest extends TestCase
     public function testEssCalcOne(): void
     {
         $game = new Card21Game();
-        $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
+        $this->assertInstanceOf("\App\game_21\Card21Game", $game);
         $hand = ['[A]', '[K]', '[4]'];
         $points = $game->getPlayerPoints($hand);
 
@@ -93,7 +93,7 @@ class GuessTest extends TestCase
     public function testEssCalc(): void
     {
         $game = new Card21Game();
-        $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
+        $this->assertInstanceOf("\App\game_21\Card21Game", $game);
         $hand = ['[A]', '[2]', '[3]'];
         $points = $game->getPlayerPoints($hand);
 

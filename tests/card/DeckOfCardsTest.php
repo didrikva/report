@@ -1,8 +1,8 @@
 <?php
 
-namespace Didrik\tests\DeckOfCardsTest;
+namespace App\tests\DeckOfCardsTest;
 
-use Didrik\Card\DeckOfCards;
+use App\Card\DeckOfCards;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +16,7 @@ class DeckOfCardsTest extends TestCase
     public function testDeckHas52(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $cards = $deck->getValue();
         $this->assertEquals(52, count($cards));
     }
@@ -27,7 +27,7 @@ class DeckOfCardsTest extends TestCase
     public function testCheckDeckString(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $string = $deck->getString();
         $this->assertIsArray($string);
         foreach ($string as $card) {
@@ -41,7 +41,7 @@ class DeckOfCardsTest extends TestCase
     public function testStringHas52(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $string = $deck->getString();
         $this->assertEquals(52, count($string));
     }
@@ -52,7 +52,7 @@ class DeckOfCardsTest extends TestCase
     public function testShuffle(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $deck->shuffle();
         $new = new DeckOfCards();
         $this->assertNotEquals($new, $deck);
@@ -64,7 +64,7 @@ class DeckOfCardsTest extends TestCase
     public function testDrawAmount(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $deck->draw(5);
         $cards = $deck->getValue();
         $this->assertEquals(47, count($cards));
@@ -76,7 +76,7 @@ class DeckOfCardsTest extends TestCase
     public function testDrawDeck(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $deck->draw(22);
         $cards = $deck->getDrawn();
         $this->assertEquals(22, count($cards));
@@ -88,7 +88,7 @@ class DeckOfCardsTest extends TestCase
     public function testDrawDeckWithOriginal(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $deck->draw(10);
         $drawn = $deck->getDrawn();
         $value = $deck->getValue();
@@ -105,7 +105,7 @@ class DeckOfCardsTest extends TestCase
     public function testSortAmount(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $sorted = $deck->sort();
         $this->assertCount(52, $sorted);
     }
@@ -116,7 +116,7 @@ class DeckOfCardsTest extends TestCase
     public function testSortNUmberAndFace(): void
     {
         $deck = new DeckOfCards();
-        $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
+        $this->assertInstanceOf("\App\Card\DeckOfCards", $deck);
         $sorted = $deck->sort();
         $number = array_slice($sorted, 0, 40);
         $face = array_slice($sorted, 40);

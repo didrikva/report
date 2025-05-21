@@ -35,6 +35,14 @@ class Card21Game
     }
 
     /**
+     * Returns the set deck.
+     */
+    public function getDeck(): array
+    {
+        return $this->deck;
+    }
+
+    /**
      * Calculates and returns the players points.
      *
      * @param string[] $hand
