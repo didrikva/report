@@ -18,9 +18,9 @@ class LibraryRepository extends ServiceEntityRepository
     /**
      * Find all producs having a value above the specified one with SQL.
      * 
-     * @return [][] Returns an array of arrays (i.e. a raw data set)
+     * @return array<int, array<string, mixed>>
      */
-    public function findByValue($value): array
+    public function findByValue(int $value): array
     {
         $conn = $this->getEntityManager()->getConnection();
 

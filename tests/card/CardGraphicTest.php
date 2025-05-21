@@ -13,7 +13,7 @@ class CardGraphicTest extends TestCase
     /**
      * Checks right value of graphic.
      */
-    public function testRightValue()
+    public function testRightValue(): void
     {
         $graphic = new CardGraphic();
         $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);
@@ -25,7 +25,7 @@ class CardGraphicTest extends TestCase
     /**
      * Checks string value.
      */
-    public function testString()
+    public function testString(): void
     {
         $graphic = new CardGraphic();
         $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);
@@ -37,7 +37,7 @@ class CardGraphicTest extends TestCase
     /**
      * Checks string after set value.
      */
-    public function testStringAfterValue()
+    public function testStringAfterValue(): void
     {
         $graphic = new CardGraphic();
         $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);
@@ -50,7 +50,7 @@ class CardGraphicTest extends TestCase
     /**
      * Checks string after set value.
      */
-    public function testStringNotInt()
+    public function testStringNotInt(): void
     {
         $graphic = new CardGraphic();
         $this->assertInstanceOf("\Didrik\Card\CardGraphic", $graphic);

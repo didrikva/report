@@ -13,7 +13,7 @@ class GuessTest extends TestCase
     /**
      * Controlles the right amount of points from the player.
      */
-    public function testPlayerpoints()
+    public function testPlayerpoints(): void
     {
         $game = new Card21Game();
         $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
@@ -26,7 +26,7 @@ class GuessTest extends TestCase
     /**
      * Controlles the right amount of points from the bank.
      */
-    public function testBankpoints()
+    public function testBankpoints(): void
     {
         $game = new Card21Game();
         $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
@@ -39,7 +39,7 @@ class GuessTest extends TestCase
     /**
      * Checks if game is ended, should still be going.
      */
-    public function testEndGame()
+    public function testEndGame(): void
     {
         $game = new Card21Game();
         $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
@@ -51,7 +51,7 @@ class GuessTest extends TestCase
     /**
      * Checks if game is ended, should be gameOver.
      */
-    public function testGameOver()
+    public function testGameOver(): void
     {
         $game = new Card21Game();
         $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
@@ -64,7 +64,7 @@ class GuessTest extends TestCase
     /**
      * Checks if getDeck and setDeck is correct.
      */
-    public function testSetDeck()
+    public function testSetDeck(): void
     {
         $game = new Card21Game();
         $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
@@ -77,7 +77,7 @@ class GuessTest extends TestCase
     /**
      * Checks if ess function give ess the right value, expected 1.
      */
-    public function testEssCalcOne()
+    public function testEssCalcOne(): void
     {
         $game = new Card21Game();
         $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);
@@ -90,7 +90,7 @@ class GuessTest extends TestCase
     /**
      * Checks if ess function give ess the right value, expected 14.
      */
-    public function testEssCalc()
+    public function testEssCalc(): void
     {
         $game = new Card21Game();
         $this->assertInstanceOf("\Didrik\game_21\Card21Game", $game);

@@ -22,7 +22,7 @@ final class LibraryController extends AbstractController
 
         $all = $libraryRepository
             ->findAll();
-        if ($all === 0) {
+        if (!$all) {
             $library = new Library();
             $library->setTitel('The lord of the rings');
             $library->setIsbn(200);
@@ -91,7 +91,6 @@ final class LibraryController extends AbstractController
     #[Route('/library/create', name: 'library_create_post', methods: ['POST'])]
     public function createPost(
         Request $request,
-        LibraryRepository $libraryRepository,
         ManagerRegistry $doctrine,
     ): Response
     {
@@ -101,14 +100,13 @@ final class LibraryController extends AbstractController
         $img = $request->request->get('img');
         $entityManager = $doctrine->getManager();
         $new = new Library();
-        $new->setTitel($titel);
-        $new->setIsbn($isbn);
-        $new->setForfattare($forfattare);
-        $new->setImg($img);
+        $new->setTitel((string) $titel);
+        $new->setIsbn((int) $isbn);
+        $new->setForfattare((string) $forfattare);
+        $new->setImg($img !== null ? (string) $img: null);
 
         $entityManager->persist($new);
         $entityManager->flush();
-        $library = $libraryRepository->findAll();
         return $this->redirectToRoute('library_view_all');
     }
     #[Route('/library/delete/{id}', name: 'library_delete_by_id')]
@@ -145,25 +143,28 @@ final class LibraryController extends AbstractController
     #[Route('/library/update/{id}', name: 'library_update_post', methods: ['POST'])]
     public function updatePost(
         Request $request,
-        LibraryRepository $libraryRepository,
         ManagerRegistry $doctrine,
         int $id
     ): Response
     {
         $entityManager = $doctrine->getManager();
         $update = $entityManager->getRepository(library::class)->find($id);
+         if (!$update) {
+            throw $this->createNotFoundException(
+                'No book found for id '.$id
+            );
+        }
         $titel = $request->request->get('titel');
         $isbn = $request->request->get('isbn');
         $forfattare = $request->request->get('forfattare');
         $img = $request->request->get('img');
-        $update->setTitel($titel);
-        $update->setIsbn($isbn);
-        $update->setForfattare($forfattare);
-        $update->setImg($img);
+        
+        $update->setTitel((string) $titel);
+        $update->setIsbn((int) $isbn);
+        $update->setForfattare((string) $forfattare);
+        $update->setImg($img !== null ? (string) $img: null);
 
-        $entityManager->persist($update);
         $entityManager->flush();
-        $library = $libraryRepository->findAll();
         return $this->redirectToRoute('library_view_all');
     }
     #[Route('/library/view/{id}', name: 'view_one')]
@@ -187,7 +188,7 @@ final class LibraryController extends AbstractController
 
         return $this->json($library);
     }
-    #[Route('api/library/book/{isbn}', name: 'library_show_all_api')]
+    #[Route('api/library/book/{isbn}', name: 'library_search')]
     public function showBookIsbn(
         LibraryRepository $libraryRepository,
         int $isbn

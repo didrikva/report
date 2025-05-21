@@ -13,7 +13,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Checks if deck containes 52 cards.
      */
-    public function testDeckHas52()
+    public function testDeckHas52(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -24,7 +24,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Checks if string function returns array with all values string.
      */
-    public function testCheckDeckString()
+    public function testCheckDeckString(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -38,7 +38,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Checks if string function returns deck with 52 cards.
      */
-    public function testStringHas52()
+    public function testStringHas52(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -49,7 +49,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Check if shuffle shuffle cards.
      */
-    public function testShuffle()
+    public function testShuffle(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -61,7 +61,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Check if draw removes right amount of cards from deck.
      */
-    public function testDrawAmount()
+    public function testDrawAmount(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -73,7 +73,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Check if draw returns correct amount of drawn.
      */
-    public function testDrawDeck()
+    public function testDrawDeck(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -85,7 +85,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Check if draw returns correct cards, both drawn and the deck.
      */
-    public function testDrawDeckWithOriginal()
+    public function testDrawDeckWithOriginal(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -102,7 +102,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Check if sorted still has full deck.
      */
-    public function testSortAmount()
+    public function testSortAmount(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);
@@ -113,7 +113,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Check if sorted has sorted all numbers and face cards are sorted right.
      */
-    public function testSortNUmberAndFace()
+    public function testSortNUmberAndFace(): void
     {
         $deck = new DeckOfCards();
         $this->assertInstanceOf("\Didrik\Card\DeckOfCards", $deck);

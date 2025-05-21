@@ -13,7 +13,7 @@ class CardTest extends TestCase
     /**
      * Checks right value of card.
      */
-    public function testRightValue()
+    public function testRightValue(): void
     {
         $card = new Card();
         $this->assertInstanceOf("\Didrik\Card\Card", $card);
@@ -25,7 +25,7 @@ class CardTest extends TestCase
     /**
      * Checks if draw is drawing from the right cards.
      */
-    public function testDraw()
+    public function testDraw(): void
     {
         $card = new Card();
         $this->assertInstanceOf("\Didrik\Card\Card", $card);
@@ -38,7 +38,7 @@ class CardTest extends TestCase
     /**
      * Checks right string format with [].
      */
-    public function testString()
+    public function testString(): void
     {
         $card = new Card();
         $this->assertInstanceOf("\Didrik\Card\Card", $card);
@@ -51,7 +51,7 @@ class CardTest extends TestCase
     /**
      * Checks if converted to string after draw.
      */
-    public function testStrignAfterDraw()
+    public function testStrignAfterDraw(): void
     {
         $card = new Card();
         $this->assertInstanceOf("\Didrik\Card\Card", $card);

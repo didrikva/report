@@ -13,7 +13,7 @@ class GuessTest extends TestCase
     /**
      * Construct object without arguments and verify there is 6 tries left.
      */
-    public function testCreateObjectNoArguments()
+    public function testCreateObjectNoArguments(): void
     {
         $guess = new Guess();
         $this->assertInstanceOf("\Didrik\Guess\Guess", $guess);
@@ -27,7 +27,7 @@ class GuessTest extends TestCase
      * Construct object and verify that the object has the expected
      * properties, use only first argument.
      */
-    public function testCreateObjectFirstArgument()
+    public function testCreateObjectFirstArgument(): void
     {
         $guess = new Guess(42);
         $this->assertInstanceOf("\Didrik\Guess\Guess", $guess);
@@ -45,7 +45,7 @@ class GuessTest extends TestCase
      * Construct object and verify that the object has the expected
      * properties, use both arguments.
      */
-    public function testCreateObjectBothArguments()
+    public function testCreateObjectBothArguments(): void
     {
         $guess = new Guess(42, 7);
         $this->assertInstanceOf("\Didrik\Guess\Guess", $guess);
