@@ -4,7 +4,7 @@ imports:
 filter:
     paths:
         - src/*
-    excluded_paths: [vendor/*, test/*, tests/*, .img/*, .tests/*, .old/*, app/*, tools/*, var/*]
+    excluded_paths: [vendor/*, test/*, .img/*, .tests/*, .old/*, app/*, tools/*, var/*]
 
 build:
     image: default-bionic

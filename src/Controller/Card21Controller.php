@@ -71,7 +71,6 @@ class Card21Controller extends AbstractController
         $hand = $session->get('hand');
         /** @var DeckOfCards $deck */
         $deck = $session->get('deck');
-        $points = $session->get('points');
         /** @var Card21Game $game21 */
         $game21 = $session->get('game21');
         $num = 1;

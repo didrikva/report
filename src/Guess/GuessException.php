@@ -1,6 +1,6 @@
 <?php
 
-namespace Didrik\Guess;
+namespace App\Guess\GuessException;
 
 /**
  * Exception class for Guess.

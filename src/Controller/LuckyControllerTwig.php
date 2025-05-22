@@ -14,34 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerTwig extends AbstractController
 {
-    #[Route('/', name: 'mig')]
-    public function home(): Response
-    {
-        return $this->render('mig.html.twig');
-    }
-
-    #[Route('/about', name: 'about')]
-    public function about(): Response
-    {
-        return $this->render('about.html.twig');
-    }
-
-    #[Route('/report', name: 'report')]
-    public function report(): Response
-    {
-        return $this->render('report.html.twig');
-    }
-
-    #[Route('/api', name: 'api')]
-    public function api(): Response
-    {
-        $data = [
-            'quotes' => 'Route about me',
-        ];
-
-        return $this->render('api.html.twig', $data);
-    }
-
     #[Route('/api/game', name: 'game21api')]
     public function game21(
         SessionInterface $session,

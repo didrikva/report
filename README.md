@@ -22,3 +22,8 @@ GNU Make 4.3
 
 Kör webbplatsen:
 Skriv in kommandot "symfony server:start" i terminalen.
+
+Scrutinizer badges:
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/didrikva/report/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/didrikva/report/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/didrikva/report/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/didrikva/report/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/didrikva/report/badges/build.png?b=master)](https://scrutinizer-ci.com/g/didrikva/report/build-status/master)
