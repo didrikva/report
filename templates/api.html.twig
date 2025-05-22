@@ -20,7 +20,10 @@
     <a href="{{ path('card_init_get_number', {num: 5}) }}">Link to draw 5</a>
     <p>Drar 5 kort från kortleken</p>
     <br>
-    <a href="{{ path('library_show_all_api', {num: 5}) }}">Link to library</a>
+    <a href="{{ path('library_show_all_api') }}">Link to library</a>
     <p>Api delen för Library uppgiften</p>
+    <br>
+    <a href="{{ path('library_search', {isbn: 1}) }}">Link to library search</a>
+    <p>Sök specifik bok (Länk söker efter isbn 1)</p>
     {% endblock %}
 {% endblock %}
