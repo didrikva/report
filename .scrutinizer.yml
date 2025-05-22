@@ -2,7 +2,9 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, test/*]
+    paths:
+        - src/*
+    excluded_paths: [vendor/*, test/*, tests/*, .img/*, .tests/*, .old/*, app/*, tools/*, var/*, view/*]
 
 build:
     image: default-bionic
@@ -27,3 +29,4 @@ build:
                 coverage:
                     file: "docs/coverage.clover"
                     format: "php-clover"
+    filter:
