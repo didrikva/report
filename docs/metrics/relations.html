@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2025-05-22 11:22:02        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2025-05-22 14:48:47        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -251,21 +251,16 @@
         "size": 3000,
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
             "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
             "\\App\\Card\\DeckOfCards",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\Symfony\\Component\\HttpFoundation\\Request",
             "\\Exception"
         ]
     },
     {
         "name": "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Symfony\\Component\\HttpFoundation\\Response",
         "size": 3000,
         "relations": []
     },
@@ -288,6 +283,11 @@
         ]
     },
     {
+        "name": "\\Symfony\\Component\\HttpFoundation\\Response",
+        "size": 3000,
+        "relations": []
+    },
+    {
         "name": "\\Symfony\\Component\\HttpFoundation\\Request",
         "size": 3000,
         "relations": []
@@ -296,6 +296,14 @@
         "name": "\\Exception",
         "size": 3000,
         "relations": []
+    },
+    {
+        "name": "\\App\\Controller\\MetricsController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response"
+        ]
     },
     {
         "name": "\\App\\Controller\\CardGameController",
@@ -355,33 +363,28 @@
         "relations": []
     },
     {
-        "name": "\\Mos\\Dice\\DiceHand",
+        "name": "\\App\\Controller\\ApiController",
         "size": 3000,
         "relations": [
-            "\\Mos\\Dice\\Dice"
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
         ]
     },
     {
-        "name": "\\Mos\\Dice\\Dice",
+        "name": "\\App\\Guess\\Guess",
+        "size": 3000,
+        "relations": [
+            "\\App\\Guess\\GuessException"
+        ]
+    },
+    {
+        "name": "\\App\\Guess\\GuessException",
         "size": 3000,
         "relations": []
     },
     {
-        "name": "\\Mos\\Dice\\DiceGraphic",
-        "size": 3000,
-        "relations": [
-            "\\Mos\\Dice\\Dice"
-        ]
-    },
-    {
-        "name": "\\Didrik\\Guess\\Guess",
-        "size": 3000,
-        "relations": [
-            "\\Didrik\\Guess\\GuessException"
-        ]
-    },
-    {
-        "name": "\\Didrik\\Guess\\GuessException",
+        "name": "\\App\\Guess\\GuessException\\GuessException",
         "size": 3000,
         "relations": [
             "\\Exception"
