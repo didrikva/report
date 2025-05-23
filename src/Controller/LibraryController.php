@@ -72,7 +72,6 @@ final class LibraryController extends AbstractController
     #[Route('/library/update/{id}', name: 'library_update_post', methods: ['POST'])]
     public function updatePost(
         Request $request,
-        ManagerRegistry $doctrine,
         LibraryUpdate $libraryUpdate,
         int $id
     ): Response

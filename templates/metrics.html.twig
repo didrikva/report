@@ -4,8 +4,6 @@
 
 {% block main %}
 <div class="game_21">
-    <h1>Card Game 21</h1>
-    <p> 
     <h1>Introduktion</h1>
     <p>När det kommer till kodkvalitet brukar man utgå ifrån sex stycken C som en tumregel. Dessa sex C är: Coverage, Complexity, Cohesion, Coupling och CRAP (Change Risk Anti-Patterns). Codestyle är hur lättläst koden är. Det kan handla om indentering i kod, namngivning eller överkomplicerade kodstrukturer. Varför detta är vikitgt är för att andra enklare ska kunna förstå och göra ändringar i koden. Coverage handlar om hur stor del av koden som körs vid tester. Dessto högra coverage dessto högre chans att man hittar och kan åtgärna buggar. Complexity handlar om hur komplex koden är, ju fler loopar som if eller for dessto högre värde. Detta leder till svårare att förstå samt underhålla. Cohesion är sammanhållningen mellan klasser och deras relationer. Bättre värden gör att en klass gör sin specifika sak bra, och gör det enklare att förstå och återanvända den klassen. Exempel från min kod är LibraryController som man enkelt kan säga gör för mycket på egen hand. Coupling är beroendet mellan de olika klasserna. Ifall man får hög coupling kna koden vara svår att förändra då många klasser är beroende av varandra och sättet dem fungerar. CRAP handlar om hur lätt det är att göra förändringar i koden. Den blandar koplexitet med testtäckning och beräknar hur svårt det är att göra ändringar i koden. Ett bra värde hjälper till med testning. Exempel här är min klass DeckOfCards som hade hög metodkomplexitet och låg täckning. </p>
     <h1>Phpmetrics</h1>
@@ -26,8 +24,8 @@
         <img src="{{ asset('img/PhpMetrics.png') }}" alt="PhpMetric data">
     </a>
     <h2>Efter</h2>
-    <a href="{{ asset('img/PhpMetrics.png') }}">
-        <img src="{{ asset('img/PhpMetrics.png') }}" alt="PhpMetric data">
+    <a href="{{ asset('img/phpMetrics2.png') }}">
+        <img src="{{ asset('img/phpMetrics2.png') }}" alt="PhpMetric data">
     </a>
 </div>
 {% endblock %}

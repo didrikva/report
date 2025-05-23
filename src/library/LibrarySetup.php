@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class LibrarySetup
 {
+    private $entityManager;
     /**
      * constructor to set upp the controller
      */

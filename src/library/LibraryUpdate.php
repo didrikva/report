@@ -42,9 +42,7 @@ class LibraryUpdate
         $entityManager = $this->doctrine->getManager();
         $update = $entityManager->getRepository(library::class)->find($id);
          if (!$update) {
-            throw $this->createNotFoundException(
-                'No book found for id '.$id
-            );
+            throw new \Exception('No book found for id ' . $id);
         }
         $update->setTitel($titel);
         $update->setIsbn($isbn);
