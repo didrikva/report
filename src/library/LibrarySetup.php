@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class LibrarySetup
 {
-    private $entityManager;
     /**
      * constructor to set upp the controller
      */
@@ -26,6 +25,7 @@ class LibrarySetup
     private function setUp(): void
     {
         
+            $entityManager = $this->doctrine->getManager();
         
             $library = new Library();
             $library->setTitel('The lord of the rings');
