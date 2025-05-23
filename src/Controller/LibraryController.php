@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Library;
-use App\library\LibrarySetup;
+use App\library\LibraryUpdate;
 use App\Repository\LibraryRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,39 +13,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class LibraryController extends AbstractController
 {
-    #[Route('/library', name: 'app_library')]
-    public function index(
-        LibrarySetup $librarySetup
-    ): Response
-    {
-        $librarySetup->checkSetUp();
-
-        
-        return $this->render('library/index.html.twig', [
-            'controller_name' => 'LibraryController',
-        ]);
-    }
-    #[Route('/library/show', name: 'library_show_all')]
-    public function showAllProduct(
-        LibraryRepository $libraryRepository
-    ): Response {
-        $library = $libraryRepository
-            ->findAll();
-
-        return $this->json($library);
-    }
-    #[Route('/library/view', name: 'library_view_all')]
-    public function viewAllProduct(
-        LibraryRepository $libraryRepository
-    ): Response {
-        $library = $libraryRepository->findAll();
-
-        $data = [
-            'librarys' => $library
-        ];
-
-        return $this->render('library/view.html.twig', $data);
-    }
     #[Route('/library/create', name: 'library_create_get', methods: ['GET'])]
     public function createGet(
         LibraryRepository $libraryRepository
@@ -61,14 +28,14 @@ final class LibraryController extends AbstractController
     #[Route('/library/create', name: 'library_create_post', methods: ['POST'])]
     public function createPost(
         Request $request,
-        LibrarySetup $librarySetup
+        LibraryUpdate $libraryUpdate
     ): Response
     {
         $titel = $request->request->get('titel');
         $isbn = $request->request->get('isbn');
         $forfattare = $request->request->get('forfattare');
         $img = $request->request->get('img');
-        $librarySetup->insert($titel,$isbn,$forfattare,$img);
+        $libraryUpdate->insert($titel,$isbn,$forfattare,$img);
         return $this->redirectToRoute('library_view_all');
     }
     #[Route('/library/delete/{id}', name: 'library_delete_by_id')]
@@ -106,7 +73,7 @@ final class LibraryController extends AbstractController
     public function updatePost(
         Request $request,
         ManagerRegistry $doctrine,
-        LibrarySetup $librarySetup,
+        LibraryUpdate $libraryUpdate,
         int $id
     ): Response
     {
@@ -115,19 +82,7 @@ final class LibraryController extends AbstractController
         $forfattare = $request->request->get('forfattare');
         $img = $request->request->get('img');
         
-        $librarySetup->update($id, $titel,$isbn,$forfattare,$img);
+        $libraryUpdate->update($id, $titel,$isbn,$forfattare,$img);
         return $this->redirectToRoute('library_view_all');
-    }
-    #[Route('/library/view/{id}', name: 'view_one')]
-    public function view(
-        ManagerRegistry $doctrine,
-        int $id
-    ): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $library = $entityManager->getRepository(library::class)->find($id);
-        return $this->render('library/one.html.twig', [
-            'library' => $library,
-        ]);
     }
 }
