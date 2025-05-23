@@ -9,7 +9,7 @@ class Card
 {
     protected string $value;
     /**
-     * @var non-empty-array<int, string>
+     * @var string[]
      */
     protected array $cards = [
         '2', '3', '4', '5', '6', '7', '8', '9', '10',

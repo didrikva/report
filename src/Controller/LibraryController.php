@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Library;
+use App\library\LibrarySetup;
 use App\Repository\LibraryRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,41 +15,10 @@ final class LibraryController extends AbstractController
 {
     #[Route('/library', name: 'app_library')]
     public function index(
-        ManagerRegistry $doctrine,
-        LibraryRepository $libraryRepository
+        LibrarySetup $librarySetup
     ): Response
     {
-        $entityManager = $doctrine->getManager();
-
-        $all = $libraryRepository
-            ->findAll();
-        if (!$all) {
-            $library = new Library();
-            $library->setTitel('The lord of the rings');
-            $library->setIsbn(200);
-            $library->setForfattare('J.k. Rowling');
-            $library->setImg('img/lordOfTheRings.jpeg');
-
-            $entityManager->persist($library);
-
-            $book = new Library();
-            $book->setTitel('Harry Potter');
-            $book->setIsbn(556);
-            $book->setForfattare('J.R.R. Tolkien');
-            $book->setImg('img/HarryPotter.jpeg');
-
-            $entityManager->persist($book);
-
-            $bibel = new Library();
-            $bibel->setTitel('Bibeln');
-            $bibel->setIsbn(1);
-            $bibel->setForfattare('Jesus');
-            $bibel->setImg('img/Bibeln.jpeg');
-
-            $entityManager->persist($bibel);
-
-            $entityManager->flush();
-        }
+        $librarySetup->checkSetUp();
 
         
         return $this->render('library/index.html.twig', [
@@ -91,22 +61,14 @@ final class LibraryController extends AbstractController
     #[Route('/library/create', name: 'library_create_post', methods: ['POST'])]
     public function createPost(
         Request $request,
-        ManagerRegistry $doctrine,
+        LibrarySetup $librarySetup
     ): Response
     {
         $titel = $request->request->get('titel');
         $isbn = $request->request->get('isbn');
         $forfattare = $request->request->get('forfattare');
         $img = $request->request->get('img');
-        $entityManager = $doctrine->getManager();
-        $new = new Library();
-        $new->setTitel((string) $titel);
-        $new->setIsbn((int) $isbn);
-        $new->setForfattare((string) $forfattare);
-        $new->setImg($img !== null ? (string) $img: null);
-
-        $entityManager->persist($new);
-        $entityManager->flush();
+        $librarySetup->insert($titel,$isbn,$forfattare,$img);
         return $this->redirectToRoute('library_view_all');
     }
     #[Route('/library/delete/{id}', name: 'library_delete_by_id')]
@@ -144,27 +106,16 @@ final class LibraryController extends AbstractController
     public function updatePost(
         Request $request,
         ManagerRegistry $doctrine,
+        LibrarySetup $librarySetup,
         int $id
     ): Response
     {
-        $entityManager = $doctrine->getManager();
-        $update = $entityManager->getRepository(library::class)->find($id);
-         if (!$update) {
-            throw $this->createNotFoundException(
-                'No book found for id '.$id
-            );
-        }
         $titel = $request->request->get('titel');
         $isbn = $request->request->get('isbn');
         $forfattare = $request->request->get('forfattare');
         $img = $request->request->get('img');
         
-        $update->setTitel((string) $titel);
-        $update->setIsbn((int) $isbn);
-        $update->setForfattare((string) $forfattare);
-        $update->setImg($img !== null ? (string) $img: null);
-
-        $entityManager->flush();
+        $librarySetup->update($id, $titel,$isbn,$forfattare,$img);
         return $this->redirectToRoute('library_view_all');
     }
     #[Route('/library/view/{id}', name: 'view_one')]
@@ -178,22 +129,5 @@ final class LibraryController extends AbstractController
         return $this->render('library/one.html.twig', [
             'library' => $library,
         ]);
-    }
-    #[Route('api/library/show', name: 'library_show_all_api')]
-    public function showAllApi(
-        LibraryRepository $libraryRepository
-    ): Response {
-        $library = $libraryRepository
-            ->findAll();
-
-        return $this->json($library);
-    }
-    #[Route('api/library/book/{isbn}', name: 'library_search')]
-    public function showBookIsbn(
-        LibraryRepository $libraryRepository,
-        int $isbn
-    ): Response {
-        $library = $libraryRepository->findByValue($isbn);
-        return $this->json($library);
     }
 }
