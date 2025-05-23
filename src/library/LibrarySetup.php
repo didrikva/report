@@ -58,7 +58,6 @@ class LibrarySetup
      */
     public function checkSetUp(): void
     {
-        $entityManager = $this->doctrine->getManager();
 
         $all = $this->libraryRepository
             ->findAll();

@@ -84,6 +84,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 6,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -172,6 +173,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 4,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -262,6 +264,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 3,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -327,6 +330,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 2,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -449,6 +453,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 5,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -535,6 +540,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 5,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -601,7 +607,6 @@ var classes = [
             "Doctrine\\Persistence\\ManagerRegistry",
             "Symfony\\Component\\HttpFoundation\\Response",
             "Symfony\\Component\\HttpFoundation\\Request",
-            "Doctrine\\Persistence\\ManagerRegistry",
             "App\\library\\LibraryUpdate"
         ],
         "parents": [
@@ -609,37 +614,38 @@ var classes = [
         ],
         "implements": [],
         "lcom": 2,
-        "length": 117,
+        "length": 116,
         "vocabulary": 32,
-        "volume": 585,
-        "difficulty": 6.86,
-        "effort": 4011.43,
+        "volume": 580,
+        "difficulty": 6.79,
+        "effort": 3935.71,
         "level": 0.15,
-        "bugs": 0.2,
-        "time": 223,
-        "intelligentContent": 85.31,
+        "bugs": 0.19,
+        "time": 219,
+        "intelligentContent": 85.47,
         "number_operators": 21,
-        "number_operands": 96,
+        "number_operands": 95,
         "number_operators_unique": 4,
         "number_operands_unique": 28,
         "cloc": 5,
         "loc": 50,
         "lloc": 45,
-        "mi": 67.82,
-        "mIwoC": 44.29,
+        "mi": 67.85,
+        "mIwoC": 44.32,
         "commentWeight": 23.53,
         "kanDefect": 0.22,
         "relativeStructuralComplexity": 144,
-        "relativeDataComplexity": 0.55,
-        "relativeSystemComplexity": 144.55,
+        "relativeDataComplexity": 0.54,
+        "relativeSystemComplexity": 144.54,
         "totalStructuralComplexity": 720,
-        "totalDataComplexity": 2.77,
-        "totalSystemComplexity": 722.77,
+        "totalDataComplexity": 2.69,
+        "totalSystemComplexity": 722.69,
         "package": "App\\Controller\\",
         "pageRank": 0.02,
         "afferentCoupling": 0,
         "efferentCoupling": 6,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -754,6 +760,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 3,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -847,6 +854,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 5,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -922,6 +930,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 3,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -1020,6 +1029,7 @@ var classes = [
         "afferentCoupling": 2,
         "efferentCoupling": 0,
         "instability": 0,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -1130,6 +1140,7 @@ var classes = [
         "afferentCoupling": 1,
         "efferentCoupling": 0,
         "instability": 0,
+        "numberOfUnitTests": 7,
         "violations": {}
     },
     {
@@ -1215,6 +1226,7 @@ var classes = [
         "afferentCoupling": 1,
         "efferentCoupling": 1,
         "instability": 0.5,
+        "numberOfUnitTests": 4,
         "violations": {}
     },
     {
@@ -1316,6 +1328,7 @@ var classes = [
         "afferentCoupling": 3,
         "efferentCoupling": 2,
         "instability": 0.4,
+        "numberOfUnitTests": 11,
         "violations": {}
     },
     {
@@ -1393,10 +1406,11 @@ var classes = [
         "totalDataComplexity": 13,
         "totalSystemComplexity": 13,
         "package": "App\\Card\\",
-        "pageRank": 0.29,
+        "pageRank": 0.3,
         "afferentCoupling": 2,
         "efferentCoupling": 0,
         "instability": 0,
+        "numberOfUnitTests": 4,
         "violations": {}
     },
     {
@@ -1453,6 +1467,7 @@ var classes = [
         "afferentCoupling": 0,
         "efferentCoupling": 1,
         "instability": 1,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -1495,42 +1510,44 @@ var classes = [
         "externals": [
             "Doctrine\\Persistence\\ManagerRegistry",
             "App\\Repository\\LibraryRepository",
-            "App\\Entity\\Library"
+            "App\\Entity\\Library",
+            "Exception"
         ],
         "parents": [],
         "implements": [],
         "lcom": 2,
-        "length": 51,
+        "length": 50,
         "vocabulary": 15,
-        "volume": 199.25,
-        "difficulty": 5.63,
-        "effort": 1120.79,
+        "volume": 195.34,
+        "difficulty": 5.5,
+        "effort": 1074.39,
         "level": 0.18,
         "bugs": 0.07,
-        "time": 62,
-        "intelligentContent": 35.42,
+        "time": 60,
+        "intelligentContent": 35.52,
         "number_operators": 6,
-        "number_operands": 45,
+        "number_operands": 44,
         "number_operators_unique": 3,
         "number_operands_unique": 12,
         "cloc": 9,
         "loc": 41,
         "lloc": 32,
-        "mi": 83.99,
-        "mIwoC": 50.8,
+        "mi": 84.05,
+        "mIwoC": 50.86,
         "commentWeight": 33.19,
         "kanDefect": 0.22,
-        "relativeStructuralComplexity": 100,
-        "relativeDataComplexity": 0.33,
-        "relativeSystemComplexity": 100.33,
-        "totalStructuralComplexity": 300,
-        "totalDataComplexity": 1,
-        "totalSystemComplexity": 301,
+        "relativeStructuralComplexity": 81,
+        "relativeDataComplexity": 0.37,
+        "relativeSystemComplexity": 81.37,
+        "totalStructuralComplexity": 243,
+        "totalDataComplexity": 1.1,
+        "totalSystemComplexity": 244.1,
         "package": "App\\library\\",
         "pageRank": 0.03,
         "afferentCoupling": 1,
-        "efferentCoupling": 3,
-        "instability": 0.75,
+        "efferentCoupling": 4,
+        "instability": 0.8,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -1611,6 +1628,7 @@ var classes = [
         "afferentCoupling": 1,
         "efferentCoupling": 3,
         "instability": 0.75,
+        "numberOfUnitTests": 0,
         "violations": {}
     },
     {
@@ -1679,10 +1697,11 @@ var classes = [
         "totalDataComplexity": 0.67,
         "totalSystemComplexity": 50.67,
         "package": "App\\Repository\\",
-        "pageRank": 0.12,
+        "pageRank": 0.11,
         "afferentCoupling": 5,
         "efferentCoupling": 2,
         "instability": 0.29,
+        "numberOfUnitTests": 0,
         "violations": {}
     }
 ]
