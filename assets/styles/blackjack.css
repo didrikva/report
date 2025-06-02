@@ -1,0 +1,136 @@
+body {
+    background-color: #0b3d0b;
+    margin: 0 auto;
+    max-width: 1500px;
+    padding: 10px;
+    color: #fff;
+}
+
+.table {
+    background-color: #026b1c;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+}
+
+h1 {
+    border-bottom: 4px double #ccc;
+}
+
+nav {
+    height: 50px;
+    font-size: 3rem;
+    border-bottom: #ccc dashed 5px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 150px;
+}
+
+li {
+    text-shadow: 3px 3px #000;
+
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #EE242C;
+    text-shadow: 2px 2px #ccc;
+}
+
+img {
+    max-width: 300px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    border: #DBA111 2px solid;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 200px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+footer img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.start_game {
+    width: 300px;
+    height: 150px;
+    color: #ccc;
+    border: outset #ccc 5px;
+    border-radius: 20%;
+    margin-top: 4rem;
+    background-color: #720000;
+    font-size: 2rem;
+    align-self: center;
+}
+
+.start_game:hover {
+    transform: scale(1.2);
+    background-color: #b71c1c;
+}
+
+.table-top {
+    width: 60%;
+    height: 250px;
+    background-color: #054016;
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 85%;
+    height: 280px;
+    border-radius: 30% 30% 0 0;
+    border: solid #DBA111 3px;
+    margin-top: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 30px;
+}
+
+.hand {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #0b3d0b;
+    border: 2px solid #DBA111 ;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    height: 200px;
+    width: 250px;
+    margin-top:  auto;
+}
