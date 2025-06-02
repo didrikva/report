@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Controller;
-
-use App\Card\DeckOfCards;
-use App\game_21\Card21Game;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

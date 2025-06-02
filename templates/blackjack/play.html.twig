@@ -5,7 +5,7 @@
 {% block body %}
 <div class="table-top">
 {% if placedBet == true %}
-<form action="{{ path('gameStart') }}" method="post">
+<form action="{{ path('projGetCard') }}" method="post">
     <button type="submit" class="place_bet">Starta spel</button>
 </form>
 {% endif %}
