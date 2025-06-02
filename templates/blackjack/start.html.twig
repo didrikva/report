@@ -1,10 +1,10 @@
-{% extends "blackjack/base.html.twig" %}
+{% extends "blackjack/base-start.html.twig" %}
 
 {% block title %}Card Game{% endblock %}
 
 {% block body %}
 <div class="table-top">
-    <a href="{{ path('getCards') }}"><button class ="start_game">Spela Black Jack</button></a>
+    <a href="{{ path('projStart') }}"><button class ="start_game">Spela Black Jack</button></a>
 </div>
 <div class="table-bottom">
     <div class="hand">Hand 1</div>

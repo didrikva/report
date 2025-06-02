@@ -1,0 +1,21 @@
+{% extends "blackjack/base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block body %}
+<div class="table-top">
+{% if placedBet == true %}
+<form action="{{ path('gameStart') }}" method="post">
+    <button type="submit" class="place_bet">Starta spel</button>
+</form>
+{% endif %}
+</div>
+<h2>Spelchips kvar: {{ chipsLeft }}<a href="{{ asset('img/poletter.jpeg') }}">
+        <img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter">
+    </a></h2>
+<div class="table-bottom">
+    <div class="hand">{% if '1' in betId %}<h3>Bet: {{ amountBet[0] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>{% endif %}<a href="{{ path('projBet', {id: 1, bet: 10}) }}"><button class ="place_bet" {% if disabled == false %}disabled{% endif %}>Lägg bet</button></a></div>
+    <div class="hand">{% if '2' in betId %}<h3>Bet: {{ amountBet[1] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>{% endif %}<a href="{{ path('projBet', {id: 2, bet: 10}) }}"><button class ="place_bet" {% if disabled == false %}disabled{% endif %}>Lägg bet</button></a></div>
+    <div class="hand">{% if '3' in betId %}<h3>Bet: {{ amountBet[2] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>{% endif %}<a href="{{ path('projBet', {id: 3, bet: 10}) }}"><button class ="place_bet" {% if disabled == false %}disabled{% endif %}>Lägg bet</button></a></div>
+</div>
+{% endblock %}
