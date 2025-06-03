@@ -194,16 +194,20 @@ footer img {
 
 .red {
     color: red;
-    padding: 10px 5px;
+    padding: 10px 3px;
     border: solid red 1px;
     margin: 0;
+    background-color: white;
+    border-radius: 15%;
 }
 
 .black {
     color: black;
-    padding: 10px 5px;
+    padding: 10px 3px;
     border: solid black 1px;
     margin: 0;
+    background-color: white;
+    border-radius: 15%;
 }
 
 .deckBlackJack {

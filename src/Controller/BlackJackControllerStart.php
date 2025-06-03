@@ -55,7 +55,10 @@ class BlackJackControllerStart extends AbstractController
         }
         $amountBet[$id-1] += $bet;
         $placedBet = True;
-        $betId[] = $id;
+        if (!in_array($id, $betId)) {
+            $betId[] = $id;
+        };
+
         $data = [
             'placedBet' => $placedBet,
             'betId' => $betId,

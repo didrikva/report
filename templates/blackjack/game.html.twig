@@ -16,7 +16,7 @@
 <div class="table-bottom">
     <div class="hand">{% if '1' in betId %}<h3>Bet: {{ amountBet[0] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>
        <div class="deckBlackJack">
-            {% for card in hand %}
+            {% for card in hand[0] %}
                 {% set symbol = card|slice(1) %}
                 <p class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
                     {{ card }}
@@ -27,7 +27,7 @@
     </div>
     <div class="hand">{% if '2' in betId %}<h3>Bet: {{ amountBet[1] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>
         <div class="deckBlackJack">
-            {% for card in hand %}
+            {% for card in hand[1] %}
                 {% set symbol = card|slice(1) %}
                 <p class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
                     {{ card }}
@@ -38,7 +38,7 @@
     </div>
     <div class="hand">{% if '3' in betId %}<h3>Bet: {{ amountBet[2] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>
         <div class="deckBlackJack">
-            {% for card in hand %}
+            {% for card in hand[2] %}
                 {% set symbol = card|slice(1) %}
                 <p class="card {% if symbol == '♥' or symbol == '♦' %}red{% else %}black{% endif %}">
                     {{ card }}

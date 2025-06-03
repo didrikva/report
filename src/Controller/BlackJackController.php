@@ -14,6 +14,7 @@ class BlackJackController extends AbstractController
     public function proj(
         SessionInterface $session,
     ): Response {
+        $cardArray = [[], [], []];
         $betId = $session->get('betId');
         $placedBet = $session->get('placedBet');
         $amountBet = $session->get('amountBet');
@@ -21,16 +22,20 @@ class BlackJackController extends AbstractController
         
         $deck = new BlackJackDeck();
         $deck->shuffle();
-        $num = 6;
-        $deck->draw($num);
-        // var_dump($deck);
+        $num = 2;
+        for ($i = 0; $i < count($betId); $i++) {
+            $deck->draw($num);
+            $cardArray[$betId[$i] - 1] = $deck->getDrawn();
+            var_dump($betId[$i]);
+        }
+        var_dump($betId);
         
         $data = [
             'placedBet' => $placedBet,
             'betId' => $betId,
             'amountBet' => $amountBet,
             'chipsLeft' => $chipsLeft,
-            'hand' => $deck->getDrawn(),
+            'hand' => $cardArray,
         ];
         return $this->render('blackjack/game.html.twig', $data);
     }
