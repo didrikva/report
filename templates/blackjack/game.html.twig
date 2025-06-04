@@ -13,7 +13,28 @@
 <h2>Spelchips kvar: {{ chipsLeft }}<a href="{{ asset('img/poletter.jpeg') }}">
         <img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter">
     </a></h2>
+<div class="buttons-bottom">
+    <div>
+        {% if '1' in betId and '1' not in buttonDisable %}
+        <a href="{{ path('projDrawCard', {id: 1}) }}"><button class ="place_bet" {% if '1' in buttonDisable %}disabled{% endif %}>Dra kort</button></a>
+        <a href="{{ path('projStay', {id: 1}) }}"><button class ="stop" {% if '1' in buttonDisable %}disabled{% endif %}>Stanna</button></a>
+        {% endif %}
+    </div>
+    <div>
+        {% if '2' in betId and '2' not in buttonDisable %}
+        <a href="{{ path('projDrawCard', {id: 2}) }}"><button class ="place_bet" {% if '2' in buttonDisable %}disabled{% endif %}>Dra kort</button></a>
+        <a href="{{ path('projStay', {id: 2}) }}"><button class ="stop" {% if '2' in buttonDisable %}disabled{% endif %}>Stanna</button></a>
+        {% endif %}
+    </div>
+    <div>
+        {% if '3' in betId and '3' not in buttonDisable %}
+        <a href="{{ path('projDrawCard', {id: 3}) }}"><button class ="place_bet" {% if '3' in buttonDisable %}disabled{% endif %}>Dra kort</button></a>
+        <a href="{{ path('projStay', {id: 3}) }}"><button class ="stop" {% if '3' in buttonDisable %}disabled{% endif %}>Stanna</button></a>
+        {% endif %}
+    </div>
+</div>
 <div class="table-bottom">
+
     <div class="hand">{% if '1' in betId %}<h3>Bet: {{ amountBet[0] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>
        <div class="deckBlackJack">
             {% for card in hand[0] %}
@@ -23,6 +44,7 @@
                 </p>
             {% endfor %}
         </div>
+        <h3>Points: {{ points[0] }}
         {% endif %}
     </div>
     <div class="hand">{% if '2' in betId %}<h3>Bet: {{ amountBet[1] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>
@@ -34,6 +56,7 @@
                 </p>
             {% endfor %}
         </div>
+        <h3>Points: {{ points[1] }}
     {% endif %}
     </div>
     <div class="hand">{% if '3' in betId %}<h3>Bet: {{ amountBet[2] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>
@@ -45,6 +68,7 @@
                 </p>
             {% endfor %}
         </div>
+        <h3>Points: {{ points[2] }}
     {% endif %}
     </div>
 </div>

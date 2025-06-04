@@ -217,3 +217,33 @@ footer img {
     align-items: center;
     gap: 10px;
 }
+
+.buttons-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 85%;
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 30px;
+}
+
+.stop {
+    width: 150px;
+    height: 75px;
+    color: #fff;
+    background-color: #ff0000;
+    border: 3px solid #DBA111;
+    border-radius: 15px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.stop:hover {
+    background-color: #ba0000;
+    color: #fff;
+    transform: scale(1.2);
+    box-shadow: 0 0 20px #ff4d4d;
+}

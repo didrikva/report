@@ -25,24 +25,6 @@ class BlackJack
     }
 
     /**
-     * Set the given deck.
-     *
-     * @param string[] $deck
-     */
-    public function setDeck(array $deck): void
-    {
-        $this->deck = $deck;
-    }
-
-    /**
-     * Returns the set deck.
-     */
-    public function getDeck(): array
-    {
-        return $this->deck;
-    }
-
-    /**
      * Calculates and returns the players points.
      *
      * @param string[] $hand
@@ -76,17 +58,12 @@ class BlackJack
         $points = 0;
         $ess = [];
         foreach ($hand as $card) {
-            $cardValue = substr($card, 1, strpos($card, ']') - 1);
-            if ('J' === $cardValue) {
-                $points += 11;
-            } elseif ('Q' === $cardValue) {
-                $points += 12;
-            } elseif ('K' === $cardValue) {
-                $points += 13;
-            } elseif ('A' === $cardValue) {
-                $ess[] = $cardValue;
-            } elseif (is_numeric($cardValue)) {
+            $cardValue = substr($card, 0, 1);
+            var_dump($cardValue);
+            if (is_numeric($cardValue)) {
                 $points += (int) $cardValue;
+            } else {
+                $points += 10;
             }
         }
         $points = $this->checkEss($ess, $points);
