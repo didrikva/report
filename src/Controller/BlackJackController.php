@@ -16,8 +16,10 @@ class BlackJackController extends AbstractController
         SessionInterface $session,
     ): Response {
         $cardArray = [[], [], []];
+        $bankCard = [];
         $buttonDisable = [0, 0, 0];
         $points = [0, 0, 0];
+        $gameOver = false;
         $betId = $session->get('betId');
         sort($betId);
         $placedBet = $session->get('placedBet');
@@ -33,6 +35,15 @@ class BlackJackController extends AbstractController
             $cardArray[$betId[$i] - 1] = $deck->getDrawn();
             $points[$betId[$i]- 1] = $blackJack->getPlayerPoints($cardArray[$betId[$i] - 1]);
         }
+        $deck->draw($num);
+        $bankCard = $deck->getDrawn();
+        if ($blackJack->getBankPoints($bankCard) == 21) {
+            $gameOver = true;
+            $this->addFlash(
+                'warning',
+                'Banken fick Black Jack, du förlorade!'
+            );
+        }
         $data = [
             'placedBet' => $placedBet,
             'betId' => $betId,
@@ -41,11 +52,14 @@ class BlackJackController extends AbstractController
             'hand' => $cardArray,
             'buttonDisable' => $buttonDisable,
             'points' => $points,
+            'bankCard' => $bankCard,
+            'gameOver' => $gameOver,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);
         $session->set('buttonDisable', $buttonDisable);
         $session->set('points', $points);
+        $session->set('bankCard', $bankCard);
         return $this->render('blackjack/game.html.twig', $data);
     }
     #[Route('/proj/draw/{id}', name: 'projDrawCard')]
@@ -75,6 +89,8 @@ class BlackJackController extends AbstractController
             'hand' => $cardArray,
             'buttonDisable' => $buttonDisable,
             'points' => $points,
+            'bankCard' => $bankCard,
+            'gameOver' => $gameOver,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);
@@ -105,6 +121,8 @@ class BlackJackController extends AbstractController
             'hand' => $cardArray,
             'buttonDisable' => $buttonDisable,
             'points' => $points,
+            'bankCard' => $bankCard,
+            'gameOver' => $gameOver,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);

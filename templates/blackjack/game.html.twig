@@ -4,12 +4,31 @@
 
 {% block body %}
 <div class="table-top">
-{% if placedBet == true %}
-<form action="{{ path('projGetCard') }}" method="post">
-    <button type="submit" class="place_bet">Starta spel</button>
+    <div class="deckBlackJack">
+        {% for card in bankCard %}
+            {% set index = loop.index0 %}
+            {% set symbol = card|slice(1) %}
+           {% if not gameOver and index == 0 %}
+                <p class="card {% if symbol == '♥' or symbol == '♦' %}red-bank{% else %}black-bank{% endif %}">
+                    {{ card }}
+                </p>
+                <p class="empty-card">X
+                </p>
+            {% elseif gameOver %}
+                <p class="card {% if symbol == '♥' or symbol == '♦' %}red-bank{% else %}black-bank{% endif %}">
+                    {{ card }}
+                </p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{{ include('flash.html.twig') }}
+{% if gameOver == true %}
+<h2>Banken vann</h2>
+<form action="{{ path('gameStart') }}" method="post">
+    <button type="submit" class="new_game">Spela igen</button>
 </form>
 {% endif %}
-</div>
 <h2>Spelchips kvar: {{ chipsLeft }}<a href="{{ asset('img/poletter.jpeg') }}">
         <img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter">
     </a></h2>

@@ -195,7 +195,7 @@ footer img {
 .red {
     color: red;
     padding: 10px 3px;
-    border: solid red 1px;
+    border: solid black 1px;
     margin: 0;
     background-color: white;
     border-radius: 15%;
@@ -208,6 +208,35 @@ footer img {
     margin: 0;
     background-color: white;
     border-radius: 15%;
+}
+
+.empty-card {
+    border-radius: 15%;
+    border: solid black 1px;
+    margin: 0;
+    background-color: white;
+    color: black;
+    font-size: 3rem;
+}
+
+.red-bank {
+    color: red;
+    font-size: 2rem;
+    padding: 10px 3px;
+    border: solid black 1px;
+    margin: 0;
+    background-color: white;
+    border-radius: 15%;
+}
+
+.black-bank {
+    color: black;
+    padding: 10px 3px;
+    border: solid black 1px;
+    margin: 0;
+    background-color: white;
+    border-radius: 15%;
+    font-size: 2rem;
 }
 
 .deckBlackJack {

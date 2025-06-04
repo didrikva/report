@@ -58,10 +58,11 @@ class BlackJack
         $points = 0;
         $ess = [];
         foreach ($hand as $card) {
-            $cardValue = substr($card, 0, 1);
-            var_dump($cardValue);
+            $cardValue = mb_substr($card, 0, -1);
             if (is_numeric($cardValue)) {
                 $points += (int) $cardValue;
+            } elseif ('A' === $cardValue) {
+                $ess[] = $cardValue;
             } else {
                 $points += 10;
             }
@@ -81,11 +82,11 @@ class BlackJack
         $essCount = count($ess);
 
         for ($i = 0; $i < $essCount; ++$i) {
-            if ($points + 14 > 21) {
+            if ($points + 11 > 21) {
                 ++$points;
                 continue;
             }
-            $points += 14;
+            $points += 11;
         }
 
         return $points;
