@@ -17,9 +17,8 @@ class BlackJackController extends AbstractController
     ): Response {
         $cardArray = [[], [], []];
         $bankCard = [];
-        $buttonDisable = [0, 0, 0];
+        $buttonDisable = [];
         $points = [0, 0, 0];
-        $gameOver = false;
         $betId = $session->get('betId');
         sort($betId);
         $placedBet = $session->get('placedBet');
@@ -37,12 +36,12 @@ class BlackJackController extends AbstractController
         }
         $deck->draw($num);
         $bankCard = $deck->getDrawn();
+        var_dump($blackJack->getBankPoints($bankCard));
+        var_dump($bankCard);
+        $session->set('bankPoints', $blackJack->getBankPoints($bankCard));
+        $session->set('bankCard', $bankCard);
         if ($blackJack->getBankPoints($bankCard) == 21) {
-            $gameOver = true;
-            $this->addFlash(
-                'warning',
-                'Banken fick Black Jack, du förlorade!'
-            );
+            return $this->redirectToRoute('projBankBlackJack');
         }
         $data = [
             'placedBet' => $placedBet,
@@ -53,13 +52,11 @@ class BlackJackController extends AbstractController
             'buttonDisable' => $buttonDisable,
             'points' => $points,
             'bankCard' => $bankCard,
-            'gameOver' => $gameOver,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);
         $session->set('buttonDisable', $buttonDisable);
         $session->set('points', $points);
-        $session->set('bankCard', $bankCard);
         return $this->render('blackjack/game.html.twig', $data);
     }
     #[Route('/proj/draw/{id}', name: 'projDrawCard')]
@@ -73,6 +70,7 @@ class BlackJackController extends AbstractController
         $amountBet = $session->get('amountBet');
         $chipsLeft = $session->get('chipsLeft');
         $blackJack = $session->get('blackJack');
+        $bankCard = $session->get('bankCard');
         $buttonDisable = $session->get('buttonDisable');
         $points = $session->get('points');
         $deck = $session->get('deck');
@@ -81,6 +79,12 @@ class BlackJackController extends AbstractController
         $card = $deck->getDrawn();
         $cardArray[$id - 1][] = $card[0];
         $points[$id-1] = $blackJack->getPlayerPoints($cardArray[$id-1]);
+        if ($points[$id-1] > 21) {
+            $buttonDisable[] = $id;
+        };
+        if (count($buttonDisable) == count($betId)) {
+            return $this->redirectToRoute('projGameOver');
+        }
         $data = [
             'placedBet' => $placedBet,
             'betId' => $betId,
@@ -90,11 +94,11 @@ class BlackJackController extends AbstractController
             'buttonDisable' => $buttonDisable,
             'points' => $points,
             'bankCard' => $bankCard,
-            'gameOver' => $gameOver,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);
         $session->set('points', $points);
+        $session->set('buttonDisable', $buttonDisable);
         return $this->render('blackjack/game.html.twig', $data);
     }
     #[Route('/proj/stay/{id}', name: 'projStay')]
@@ -104,6 +108,7 @@ class BlackJackController extends AbstractController
     ): Response {
         $betId = $session->get('betId');
         $cardArray = $session->get('cardArray');
+        $bankCard = $session->get('bankCard');
         $placedBet = $session->get('placedBet');
         $amountBet = $session->get('amountBet');
         $chipsLeft = $session->get('chipsLeft');
@@ -113,6 +118,9 @@ class BlackJackController extends AbstractController
         if (!in_array($id, $buttonDisable)) {
             $buttonDisable[] = $id;
         };
+        if (count($buttonDisable) == count($betId)) {
+            return $this->redirectToRoute('projGameOver');
+        }
         $data = [
             'placedBet' => $placedBet,
             'betId' => $betId,
@@ -122,7 +130,6 @@ class BlackJackController extends AbstractController
             'buttonDisable' => $buttonDisable,
             'points' => $points,
             'bankCard' => $bankCard,
-            'gameOver' => $gameOver,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);

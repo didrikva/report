@@ -10,7 +10,9 @@ class BlackJackControllerStart extends AbstractController
 {
     #[Route('/proj', name: 'projHome')]
     public function proj(
+        SessionInterface $session,
     ): Response {
+        $session->clear();
         return $this->render('blackjack/start.html.twig');
     }
 
@@ -24,13 +26,20 @@ class BlackJackControllerStart extends AbstractController
         SessionInterface $session,
     ): Response {
         $amountBet = [0, 0, 0];
-        $chipsLeft = 100;
+        $disabled = true;
+        $chipsLeft = $session->get('chipsLeft');
+        if ($chipsLeft === null) {
+            $chipsLeft = 100;
+        }
+        if ($chipsLeft <= 0) {
+            $disabled = false;
+        }
         $data = [
             'placedBet' => false,
             'betId' => [],
             'amountBet' => $amountBet,
             'chipsLeft' => $chipsLeft,
-            'disabled' => true
+            'disabled' => $disabled
         ];
         $session->set('betId', []);
         $session->set('placedBet', false);
@@ -50,7 +59,7 @@ class BlackJackControllerStart extends AbstractController
         $amountBet = $session->get('amountBet');
         $chipsLeft = $session->get('chipsLeft');
         $chipsLeft -= $bet;
-        if ($chipsLeft == 0) {
+        if ($chipsLeft <= 0) {
             $disabled = false;
         }
         $amountBet[$id-1] += $bet;
