@@ -1,9 +1,10 @@
 <?php
 
 namespace App\BlackJack;
+use Exception;
 
 /**
- * Class for the card game 21.
+ * Class for the black jack game
  */
 class BlackJack
 {
@@ -58,13 +59,17 @@ class BlackJack
         $points = 0;
         $ess = [];
         foreach ($hand as $card) {
-            $cardValue = mb_substr($card, 0, -1);
-            if (is_numeric($cardValue)) {
-                $points += (int) $cardValue;
-            } elseif ('A' === $cardValue) {
-                $ess[] = $cardValue;
+            if(strlen($card) !== 1) {
+                $cardValue = mb_substr($card, 0, -1);
+                if (is_numeric($cardValue)) {
+                    $points += (int) $cardValue;
+                } elseif ('A' === $cardValue) {
+                    $ess[] = $cardValue;
+                } else {
+                    $points += 10;
+                }
             } else {
-                $points += 10;
+                throw new Exception("To short value");
             }
         }
         $points = $this->checkEss($ess, $points);
@@ -90,21 +95,5 @@ class BlackJack
         }
 
         return $points;
-    }
-
-    /**
-     * Checks if the game is still playing.
-     */
-    public function endGame(): bool
-    {
-        return $this->gameOver;
-    }
-
-    /**
-     * Function that ends the game.
-     */
-    public function gameOver(): void
-    {
-        $this->gameOver = true;
     }
 }

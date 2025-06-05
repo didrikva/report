@@ -96,10 +96,17 @@ class BlackJackControllerEnd extends AbstractController
             }
         }
         $chipsLeft = $chipsLeft + $winBet;
-        $this->addFlash(
-            'win',
-            "Grattis {$name}! Du vann {$winBet} spelchips!"
-        );
+        if ($winBet > 0) {
+            $this->addFlash(
+                'win',
+                "Grattis {$name}! Du vann {$winBet} spelchips!"
+            );
+        } else {
+            $this->addFlash(
+                'lose',
+                "{$name} vann {$winBet} spelchips, testa igen!"
+            );
+        }
         $data = [
             'placedBet' => $placedBet,
             'betId' => $betId,

@@ -83,42 +83,4 @@ class BlackJackDeck
         return $this->cards;
     }
 
-    /**
-     * Sort the deck after color and value.
-     *
-     * @return string[]
-     */
-    public function sort(): array
-    {
-        $number = [];
-        $rest = [];
-        foreach ($this->cards as $card) {
-            $cardValue = substr($card, 1, strpos($card, ']') - 1);
-
-            if (is_numeric($cardValue) && 10 != $cardValue) {
-                $number[] = $card;
-            }
-
-            $rest[] = $card;
-        }
-        $order = ['10', 'J', 'Q', 'K', 'A'];
-        $sorted = [];
-
-        foreach ($order as $i) {
-            foreach ($rest as $card) {
-                $value = substr($card, 1, strpos($card, ']') - 1);
-                if ($value === $i) {
-                    $sorted[] = $card;
-                }
-            }
-        }
-        sort($number);
-
-        // var_dump($rest);
-        // var_dump($number);
-        $this->cards = array_merge($number, $sorted);
-
-        // var_dump($this->cards);
-        return $this->cards;
-    }
 }

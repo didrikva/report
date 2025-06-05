@@ -3,7 +3,14 @@
         "../../src"
     ],
     "exclude": [
-      "../../test[s]?"
+      "../../test[s]?",
+      "../../src/Card",
+      "../../src/game_21",
+      "../../src/library",
+      "../../src/Entity",
+      "../../app",
+      "../../migrations",
+      "../../tools"
     ],
     "report": {
         "html": "../../docs/metrics"

@@ -355,3 +355,18 @@ input {
     border-radius: 50px 50px 20px 20px;
     box-shadow: 0 0 20px gold;
 }
+
+.flash-lose {
+    background: linear-gradient(45deg, #ff4e42, #b22222, #ff4e42);
+    width: 350px;
+    height: 80px;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: white;
+    margin: 100px auto;
+    padding-top: 25px;
+    border: 8px solid #b22222;
+    border-radius: 50px 50px 20px 20px;
+    box-shadow: 0 0 20px #b22222;
+}
