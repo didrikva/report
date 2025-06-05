@@ -125,6 +125,7 @@ class BlackJackControllerEnd extends AbstractController
         $session->set('points', $points);
         $session->set('bankCard', $bankCard);
         $session->set('chipsLeft', $chipsLeft);
+        $session->set('winBet', $winBet);
         return $this->render('blackjack/end.html.twig', $data);
     }
 }

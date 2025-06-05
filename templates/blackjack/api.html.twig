@@ -1,0 +1,23 @@
+{% extends "blackjack/base-start.html.twig" %}
+
+{% block title %}API{% endblock %}
+
+{% block body %}
+    <h1>API</h1>
+    {% block article %}
+    <a href="{{ path('projShowBalance') }}"><button class ="place_bet">Visa bankkonto</button></a>
+    <p>Visar spelarens bankkonto/antalet spelchips</p>
+    <br>
+    <a href="{{ path('projShowCards') }}"><button class ="place_bet">Visa spelarkort</button></a>
+    <p>Visar spelarens kort samt poäng</p>
+    <br>
+    <a href="{{ path('projWinnings') }}"><button class ="place_bet">Visa vinsten</button></a>
+    <p>Visar vad spelaren tjänade</p>
+    <br>
+    <a href="{{ path('projDepositPost', {amount: 100}) }}"><button class ="place_bet">Sätt in pengar</button></a>
+    <p>Sätter in 100 nya chips på spelarens bankkonto</p>
+    <br>
+    <a href="{{ path('projQuickPlay', {bet: 10}) }}"><button class ="place_bet">Quick Play</button></a>
+    <p>Kör ett snabbt spel med 10 i bet</p>
+    {% endblock %}
+{% endblock %}
