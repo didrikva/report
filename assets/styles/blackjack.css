@@ -192,6 +192,43 @@ footer img {
     box-shadow: 0 0 20px #DBA111;
 }
 
+.enter-name {
+    width: 250px;
+    height: 75px;
+    color: #fff;
+    background-color: #1e1e1e;
+    border: 3px solid #DBA111;
+    border-radius: 15px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.enter-name:hover {
+    background-color: #DBA111;
+    color: #000;
+    transform: scale(1.2);
+    box-shadow: 0 0 20px #DBA111;
+}
+
+.table-top form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+label {
+    font-size: 2rem;
+}
+
+input {
+    height: 30px;
+}
+
 .red {
     color: red;
     padding: 10px 3px;

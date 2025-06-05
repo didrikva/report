@@ -3,6 +3,7 @@
 namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,10 +31,25 @@ class BlackJackControllerStart extends AbstractController
     ): Response {
         return $this->render('blackjack/about.html.twig');
     }
+    #[Route('/proj/name', name: 'projNameGet', methods: ['GET'])]
+    public function name(
+    ): Response {
+        return $this->render('blackjack/name.html.twig');
+    }
+    #[Route('/proj/name', name: 'projNamePost', methods: ['POST'])]
+    public function namePost(
+        Request $request,
+        SessionInterface $session,
+    ): Response {
+        $name = $request->request->get('player_name');
+        $session->set('name', $name);
+        return $this->redirectToRoute('projStart');
+    }
     #[Route('/proj/start', name: 'projStart')]
     public function play(
         SessionInterface $session,
     ): Response {
+        $name = $session->get('name');
         $amountBet = [0, 0, 0];
         $disabled = true;
         $chipsLeft = $session->get('chipsLeft');
@@ -48,7 +64,8 @@ class BlackJackControllerStart extends AbstractController
             'betId' => [],
             'amountBet' => $amountBet,
             'chipsLeft' => $chipsLeft,
-            'disabled' => $disabled
+            'disabled' => $disabled,
+            'name' => $name
         ];
         $session->set('betId', []);
         $session->set('placedBet', false);
@@ -63,6 +80,7 @@ class BlackJackControllerStart extends AbstractController
         SessionInterface $session,
     ): Response {
         $disabled = true;
+        $name = $session->get('name');
         $betId = $session->get('betId');
         $placedBet = $session->get('placedBet');
         $amountBet = $session->get('amountBet');
@@ -82,7 +100,8 @@ class BlackJackControllerStart extends AbstractController
             'betId' => $betId,
             'amountBet' => $amountBet,
             'chipsLeft' => $chipsLeft,
-            'disabled' => $disabled
+            'disabled' => $disabled,
+            'name' => $name
         ];
         $session->set('betId', $betId);
         $session->set('amountBet', $amountBet);

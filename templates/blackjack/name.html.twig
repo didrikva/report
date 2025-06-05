@@ -4,7 +4,11 @@
 
 {% block body %}
 <div class="table-top">
-    <a href="{{ path('projNameGet') }}"><button class ="start_game">Starta spel</button></a>
+    <form action="{{ path('projNamePost') }}" method="post">
+        <label for="player_name">Ange spelarens namn:</label>
+        <input type="text" name="player_name" required placeholder="Ange ditt namn" />
+        <button type="submit" class ="enter-name">Spela Black Jack</button>
+    </form>
 </div>
 {{ include('flash.html.twig') }}
 <h2></h2>

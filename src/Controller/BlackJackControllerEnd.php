@@ -16,6 +16,7 @@ class BlackJackControllerEnd extends AbstractController
         SessionInterface $session,
     ): Response {
         $betId = $session->get('betId');
+        $name = $session->get('name');
         $cardArray = $session->get('cardArray');
         $placedBet = $session->get('placedBet');
         $amountBet = $session->get('amountBet');
@@ -40,6 +41,7 @@ class BlackJackControllerEnd extends AbstractController
             'points' => $points,
             'bankCard' => $bankCard,
             'bankPoints' => $bankPoints,
+            'name' => $name,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);
@@ -54,6 +56,7 @@ class BlackJackControllerEnd extends AbstractController
     ): Response {
         $winner = [];
         $winBet = 0;
+        $name = $session->get('name');
         $betId = $session->get('betId');
         $cardArray = $session->get('cardArray');
         $placedBet = $session->get('placedBet');
@@ -95,7 +98,7 @@ class BlackJackControllerEnd extends AbstractController
         $chipsLeft = $chipsLeft + $winBet;
         $this->addFlash(
             'win',
-            "Du vann {$chipsLeft} spelchips!"
+            "Grattis {$name}! Du vann {$winBet} spelchips!"
         );
         $data = [
             'placedBet' => $placedBet,
@@ -107,6 +110,7 @@ class BlackJackControllerEnd extends AbstractController
             'points' => $points,
             'bankCard' => $bankCard,
             'bankPoints' => $bankPoints,
+            'name' => $name,
         ];
         $session->set('cardArray', $cardArray);
         $session->set('deck', $deck);

@@ -8,9 +8,9 @@
 <a href="{{ path('projGetCard') }}"><button class ="place_bet">Starta Spel</button></a>
 {% endif %}
 </div>
-<h2>Spelchips kvar: {{ chipsLeft }}<a href="{{ asset('img/poletter.jpeg') }}">
+<h2>{{name}}s spelchips: {{ chipsLeft }}<a href="{{ asset('img/poletter.jpeg') }}">
         <img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter">
-    </a></h2>
+    </a>st</h2>
 <div class="table-bottom">
     <div class="hand">{% if '1' in betId %}<h3>Bet: {{ amountBet[0] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>{% endif %}<a href="{{ path('projBet', {id: 1, bet: 10}) }}"><button class ="place_bet" {% if disabled == false %}disabled{% endif %}>Lägg bet</button></a></div>
     <div class="hand">{% if '2' in betId %}<h3>Bet: {{ amountBet[1] }}<img src="{{ asset('img/poletter.jpeg') }}" alt="Poletter"></h3>{% endif %}<a href="{{ path('projBet', {id: 2, bet: 10}) }}"><button class ="place_bet" {% if disabled == false %}disabled{% endif %}>Lägg bet</button></a></div>

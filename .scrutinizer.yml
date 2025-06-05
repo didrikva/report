@@ -4,7 +4,7 @@ imports:
 filter:
     paths:
         - src/*
-    excluded_paths: [vendor/*, test/*, .img/*, .tests/*, .old/*, app/*, tools/*, var/*]
+    excluded_paths: [vendor/*, test/*, .img/*, .tests/*, .old/*, app/*, tools/*, var/*, src/Card, src/game_21, src/library, src/Entity, templates/21_game, templates/card, templates/library, templates/pig, templates/product]
 
 build:
     image: default-bionic
