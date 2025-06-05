@@ -26,7 +26,6 @@ class BlackJackControllerEnd extends AbstractController
         $points = $session->get('points');
         $deck = $session->get('deck');
         $bankPoints = $session->get('bankPoints');
-        var_dump($bankPoints);
         $this->addFlash(
             'blackjack',
             'Banken fick Black Jack, du förlorade!'
@@ -53,6 +52,8 @@ class BlackJackControllerEnd extends AbstractController
     public function gameover(
         SessionInterface $session,
     ): Response {
+        $winner = [];
+        $winBet = 0;
         $betId = $session->get('betId');
         $cardArray = $session->get('cardArray');
         $placedBet = $session->get('placedBet');
@@ -64,9 +65,37 @@ class BlackJackControllerEnd extends AbstractController
         $points = $session->get('points');
         $deck = $session->get('deck');
         $bankPoints = $session->get('bankPoints');
+        while ($bankPoints < 17 && !($bankPoints > max($points))) {
+            $num = 1;
+            $deck->draw($num);
+            $new = $deck->getDrawn();
+            $bankCard = array_merge($bankCard, $new);
+            $bankPoints = $blackJack->getBankPoints($bankCard);
+        }
+        foreach ($points as $p) {
+            if ($bankPoints < 22) {
+                if ($p > $bankPoints && $p < 22) {
+                    $winner[] = "win";
+                } else {
+                    $winner[] = "lose";
+                }
+            } elseif ($p == 0) {
+                $winner[] = "lose";
+            } elseif ($p < 22) {
+                $winner[] = "win";
+            } else {
+                $winner[] = "lose";
+            }
+        }
+        for ($i = 0; $i < 3; $i++) {
+            if ($winner[$i] == "win") {
+                $winBet += $amountBet[$i]*2;
+            }
+        }
+        $chipsLeft = $chipsLeft + $winBet;
         $this->addFlash(
-            'blackjack',
-            'Banken fick Black Jack, du förlorade!'
+            'win',
+            "Du vann {$chipsLeft} spelchips!"
         );
         $data = [
             'placedBet' => $placedBet,
@@ -84,6 +113,7 @@ class BlackJackControllerEnd extends AbstractController
         $session->set('buttonDisable', $buttonDisable);
         $session->set('points', $points);
         $session->set('bankCard', $bankCard);
+        $session->set('chipsLeft', $chipsLeft);
         return $this->render('blackjack/end.html.twig', $data);
     }
 }

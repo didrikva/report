@@ -10,9 +10,18 @@ class BlackJackControllerStart extends AbstractController
 {
     #[Route('/proj', name: 'projHome')]
     public function proj(
+    ): Response {
+        return $this->render('blackjack/start.html.twig');
+    }
+    #[Route('/proj/session', name: 'projSession')]
+    public function projSession(
         SessionInterface $session,
     ): Response {
         $session->clear();
+        $this->addFlash(
+            'warning',
+            'Sessionen rensad'
+        );
         return $this->render('blackjack/start.html.twig');
     }
 

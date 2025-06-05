@@ -36,8 +36,6 @@ class BlackJackController extends AbstractController
         }
         $deck->draw($num);
         $bankCard = $deck->getDrawn();
-        var_dump($blackJack->getBankPoints($bankCard));
-        var_dump($bankCard);
         $session->set('bankPoints', $blackJack->getBankPoints($bankCard));
         $session->set('bankCard', $bankCard);
         if ($blackJack->getBankPoints($bankCard) == 21) {
@@ -81,6 +79,8 @@ class BlackJackController extends AbstractController
         $points[$id-1] = $blackJack->getPlayerPoints($cardArray[$id-1]);
         if ($points[$id-1] > 21) {
             $buttonDisable[] = $id;
+            $session->set('points', $points);
+            $session->set('cardArray', $cardArray);
         };
         if (count($buttonDisable) == count($betId)) {
             return $this->redirectToRoute('projGameOver');

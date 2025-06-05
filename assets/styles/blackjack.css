@@ -303,3 +303,18 @@ footer img {
     border-radius: 50px 50px 20px 20px;
     box-shadow: 0 0 20px gold;
 }
+
+.flash-win {
+    background: linear-gradient(45deg, gold, orange, gold);
+    width: 350px;
+    height: 80px;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: black;
+    margin: 100px auto;
+    padding-top: 25px;
+    border: 8px solid gold;
+    border-radius: 50px 50px 20px 20px;
+    box-shadow: 0 0 20px gold;
+}
